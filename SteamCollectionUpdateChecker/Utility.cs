@@ -3,6 +3,36 @@ namespace SteamCollectionUpdateChecker;
 
 public static class Utility
 {
+    public static string SelectAppLanguage(string text)
+    {
+        string language = string.Empty;
+        Console.Title = string.Empty;
+        Console.Write(text);
+
+        switch (Console.ReadKey().KeyChar)
+        {
+            case '1': LanguageManager.SetLanguage(Constant.EN); language = Constant.EN; break;
+            case '2': LanguageManager.SetLanguage(Constant.TR); language = Constant.TR; break;
+            default: LanguageManager.SetLanguage(Constant.EN); language = Constant.EN; break;
+        }
+
+        return language;
+    }
+
+    public static bool IsOnlyUpdateAvailable(string text)
+    {
+        Console.Write(text);
+
+        bool updateAvailableOnly = Console.ReadKey().KeyChar switch
+        {
+            '1' => true,
+            '2' => false,
+            _ => false,
+        };
+
+        return updateAvailableOnly;
+    }
+
     public static async Task<string> GetHtmlContent(string url)
     {
         using HttpResponseMessage response = await new HttpClient().GetAsync(url);

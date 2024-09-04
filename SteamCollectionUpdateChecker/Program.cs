@@ -10,16 +10,7 @@ internal class Program
 
     private static async Task Main()
     {
-        Console.Title = string.Empty;
-        Console.Write("Select Language / Dil Seç\n1 - English\n2 - Türkçe\n");
-
-        switch (Console.ReadKey().KeyChar)
-        {
-            case '1': LanguageManager.SetLanguage(Constant.EN); language = Constant.EN; break;
-            case '2': LanguageManager.SetLanguage(Constant.TR); language = Constant.TR; break;
-            default: LanguageManager.SetLanguage(Constant.EN); language = Constant.EN; break;
-        }
-
+        language = Utility.SelectAppLanguage(Constant.SELECT_LANGUAGE);
         Console.Title = LanguageManager.Translate(Constant.KEY_CONSOLE_TITLE);
         Console.Clear();
 
@@ -39,25 +30,17 @@ internal class Program
         if (!yearResult) goto DateYear;
         else startDateYear = yearValue;
 
-    DateMonth:
+        DateMonth:
         (bool monthResult, int monthValue) = Utility.WriteTextAndCheckValidity(LanguageManager.Translate(Constant.KEY_ENTER_START_DATE_MONTH), LanguageManager.Translate(Constant.KEY_INVALID_MONTH), startDateMonth, 1, 12);
         if (!monthResult) goto DateMonth;
         else startDateMonth = monthValue;
 
-    DateDay:
+        DateDay:
         (bool dayResult, int dayValue) = Utility.WriteTextAndCheckValidity(LanguageManager.Translate(Constant.KEY_ENTER_START_DATE_DAY), LanguageManager.Translate(Constant.KEY_INVALID_DAY), startDateDay, 1, 30);
         if (!dayResult) goto DateDay;
         else startDateDay = dayValue;
 
-        Console.Write(LanguageManager.Translate(Constant.KEY_UPDATE_AVAILABLE_ONLY));
-        bool updateAvailableOnly = false;
-        updateAvailableOnly = Console.ReadKey().KeyChar switch
-        {
-            '1' => true,
-            '2' => false,
-            _ => false,
-        };
-
+        bool updateAvailableOnly = Utility.IsOnlyUpdateAvailable(LanguageManager.Translate(Constant.KEY_UPDATE_AVAILABLE_ONLY));
         Console.Write(LanguageManager.Translate(Constant.KEY_PROCESS_STARTING));
         using (var fileWriter = new StreamWriter(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), $"{collectionId} ({startDateDay}.{startDateMonth}.{startDateYear} - {DateTime.Now:d}) - {LanguageManager.Translate(Constant.KEY_UPDATE_CHECK)}.txt"), false, Encoding.UTF8))
         {
@@ -116,10 +99,20 @@ internal class Program
                 if (itemUrl.Contains(Constant.HASH) || !itemUrl.Contains(Constant.URL_FILE_DETAILS))
                     continue;
 
-                string itemHtmlContent = await Utility.GetHtmlContent(itemUrl);
+                Restart:
+                string itemHtmlContent = string.Empty;
+                try
+                {
+                    itemHtmlContent = await Utility.GetHtmlContent(itemUrl);
+                }
+                catch (HttpRequestException)
+                {
+                    Thread.Sleep(TimeSpan.FromSeconds(120));
+                    goto Restart;
+                }
+
                 var itemDocument = new HtmlDocument();
                 itemDocument.LoadHtml(itemHtmlContent);
-
                 var titleNode = itemDocument.DocumentNode.SelectSingleNode(Constant.XPATH_ITEM_TITLE);
                 string title = titleNode?.InnerText.Trim() ?? LanguageManager.Translate(Constant.KEY_TITLE_NOT_FOUND);
 

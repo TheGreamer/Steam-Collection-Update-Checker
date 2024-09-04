@@ -12,6 +12,7 @@ public static class Constant
     public const string XPATH_ITEM_TITLE = "//div[@class='workshopItemTitle']";
     public const string XPATH_ITEM_UPDATE_DATE = "//div[@class='detailsStatRight']";
     public const string BASE_URL = "https://steamcommunity.com/sharedfiles/filedetails/?id=";
+    public const string SELECT_LANGUAGE = "Select Language / Dil Seç\n1 - English\n2 - Türkçe\n";
 
     public const string EN_DEFAULT_CULTURE_INFO = "en-US";
     public const string TR_DEFAULT_CULTURE_INFO = "tr-TR";
