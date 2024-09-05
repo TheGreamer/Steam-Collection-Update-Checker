@@ -14,7 +14,7 @@ internal class Program
         Console.Title = LanguageManager.Translate(Constant.KEY_CONSOLE_TITLE);
         Console.Clear();
 
-    Start:
+        Start:
         Console.OutputEncoding = Encoding.UTF8;
         Console.Write(LanguageManager.Translate(Constant.KEY_ENTER_COLLECTION_ID));
         string collectionId = Console.ReadLine();
@@ -25,7 +25,7 @@ internal class Program
             goto Start;
         }
 
-    DateYear:
+        DateYear:
         (bool yearResult, int yearValue) = Utility.WriteTextAndCheckValidity(LanguageManager.Translate(Constant.KEY_ENTER_START_DATE_YEAR), LanguageManager.Translate(Constant.KEY_INVALID_YEAR), startDateYear, 2012, DateTime.Now.Year);
         if (!yearResult) goto DateYear;
         else startDateYear = yearValue;
@@ -65,22 +65,15 @@ internal class Program
     {
         var document = new HtmlDocument();
         await GetCollection(collectionId, updateAvailableOnly, document);
-
         var subCollections = document.DocumentNode.SelectNodes(Constant.XPATH_SUB_COLLECTION_URLS);
-        List<string> subCollectionIds = [];
 
         if (subCollections != null)
         {
             foreach (var subCollection in subCollections)
             {
                 string subCollectionId = subCollection.Attributes[Constant.HREF].Value.Remove(0, 55);
-                subCollectionIds.Add(subCollectionId);
+                await GetCollection(subCollectionId, updateAvailableOnly, new HtmlDocument());
             }
-        }
-
-        for (int i = 0; i < subCollectionIds.Count; i++)
-        {
-            await GetCollection(subCollectionIds[i], updateAvailableOnly, new HtmlDocument());
         }
     }
 
