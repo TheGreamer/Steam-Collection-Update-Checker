@@ -15,7 +15,7 @@ internal class Program
         Console.Write(LanguageManager.Translate(Constant.KEY_ENTER_COLLECTION_ID));
         string collectionId = Console.ReadLine();
 
-        if (string.IsNullOrWhiteSpace(collectionId) || !collectionId.All(char.IsDigit))
+        if (!Utility.IsValidCollectionId(collectionId))
         {
             Console.Write(LanguageManager.Translate(Constant.KEY_INVALID_COLLECTION_ID));
             goto Start;

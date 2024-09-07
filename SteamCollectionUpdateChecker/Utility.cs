@@ -19,6 +19,15 @@ public static class Utility
         return language;
     }
 
+    public static bool IsValidCollectionId(string collectionId)
+    {
+        if (string.IsNullOrWhiteSpace(collectionId) || !collectionId.All(char.IsDigit) || collectionId.Length < 9 || collectionId.Length > 10)
+        {
+            return false;
+        }
+        return true;
+    }
+
     public static bool IsOnlyUpdateAvailable(string text)
     {
         Console.Write(text);
