@@ -45,7 +45,8 @@ internal class Program
         {
             using var multiWriter = new MultiTextWriter(Console.Out, fileWriter);
             Console.SetOut(multiWriter);
-            await Scraper.ProcessCollection(collectionId, startDateYear, startDateMonth, startDateDay, language, updateAvailableOnly);
+            var updateInfo = new UpdateInfo(collectionId, startDateYear, startDateMonth, startDateDay, language, updateAvailableOnly);
+            await Scraper.ProcessCollection(updateInfo);
         }
 
         var standardOutput = new StreamWriter(Console.OpenStandardOutput(), Encoding.UTF8);

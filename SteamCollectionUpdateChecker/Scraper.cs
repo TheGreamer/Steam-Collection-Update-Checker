@@ -3,25 +3,25 @@ namespace SteamCollectionUpdateChecker;
 
 public static class Scraper
 {
-    public static async Task ProcessCollection(string collectionId, int startDateYear, int startDateMonth, int startDateDay, string language, bool updateAvailableOnly)
+    public static async Task ProcessCollection(UpdateInfo updateInfo)
     {
         var document = new HtmlDocument();
-        await GetCollection(collectionId, startDateYear, startDateMonth, startDateDay, language, updateAvailableOnly, document);
+        await GetCollection(updateInfo, document);
         var subCollections = document.DocumentNode.SelectNodes(Constant.XPATH_SUB_COLLECTION_URLS);
 
         if (subCollections != null)
         {
             foreach (var subCollection in subCollections)
             {
-                string subCollectionId = subCollection.Attributes[Constant.HREF].Value.Remove(0, 55);
-                await GetCollection(subCollectionId, startDateYear, startDateMonth, startDateDay, language, updateAvailableOnly, new HtmlDocument());
+                updateInfo.CollectionId = subCollection.Attributes[Constant.HREF].Value.Remove(0, 55);
+                await GetCollection(updateInfo, new HtmlDocument());
             }
         }
     }
 
-    private static async Task GetCollection(string collectionId, int startDateYear, int startDateMonth, int startDateDay, string language, bool updateAvailableOnly, HtmlDocument document)
+    private static async Task GetCollection(UpdateInfo updateInfo, HtmlDocument document)
     {
-        string htmlContent = await Utility.GetHtmlContent(Constant.BASE_URL + collectionId);
+        string htmlContent = await Utility.GetHtmlContent(Constant.BASE_URL + updateInfo.CollectionId);
         document.LoadHtml(htmlContent);
         var collectionItems = document.DocumentNode.SelectNodes(Constant.XPATH_COLLECTION_ITEMS);
 
@@ -62,9 +62,9 @@ public static class Scraper
 
                     if (itemDetails.Count > 2)
                     {
-                        string updateInfo = itemDetails.Last().InnerText.Trim();
-                        isRecentUpdate = updateInfo.IsDateBetween(new DateTime(startDateYear, startDateMonth, startDateDay), DateTime.Now);
-                        updateDate = updateInfo.ChangeDateFormat(language);
+                        string updateDetail = itemDetails.Last().InnerText.Trim();
+                        isRecentUpdate = updateDetail.IsDateBetween(new DateTime(updateInfo.StartDateYear, updateInfo.StartDateMonth, updateInfo.StartDateDay), DateTime.Now);
+                        updateDate = updateDetail.ChangeDateFormat(updateInfo.Language);
                     }
                 }
 
@@ -77,14 +77,14 @@ public static class Scraper
                     }
                     else
                     {
-                        if (!updateAvailableOnly)
+                        if (!updateInfo.UpdateAvailableOnly)
                             Utility.ColorfulWrite([LanguageManager.Translate(Constant.KEY_UPDATED), LanguageManager.Translate(Constant.KEY_ITEM), $"{title} ({itemSize})", LanguageManager.Translate(Constant.KEY_UPDATE_DATE), $"{updateDate}\n\n"],
                                                   [ConsoleColor.White, ConsoleColor.Cyan, ConsoleColor.Green, ConsoleColor.Cyan, ConsoleColor.Green]);
                     }
                 }
                 else
                 {
-                    if (!updateAvailableOnly)
+                    if (!updateInfo.UpdateAvailableOnly)
                         Utility.ColorfulWrite([LanguageManager.Translate(Constant.KEY_NOT_UPDATED), LanguageManager.Translate(Constant.KEY_ITEM), $"{title} ({itemSize})", LanguageManager.Translate(Constant.KEY_UPDATE_DATE), $"{LanguageManager.Translate(Constant.KEY_NONE)}\n\n"],
                                               [ConsoleColor.White, ConsoleColor.Gray, ConsoleColor.Red, ConsoleColor.Gray, ConsoleColor.Red]);
                 }
