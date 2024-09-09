@@ -1,13 +1,12 @@
 ﻿using HtmlAgilityPack;
-using System.Net.Http;
 namespace SteamCollectionUpdateChecker;
 
 public static class Scraper
 {
-    public static async Task ProcessCollection(UpdateInfo updateInfo, bool getUpdateNotes)
+    public static async Task ProcessCollection(UpdateInfo updateInfo, bool includeUpdateNotes)
     {
         var document = new HtmlDocument();
-        await GetCollection(updateInfo, getUpdateNotes, document);
+        await GetCollection(updateInfo, includeUpdateNotes, document);
         var subCollections = document.DocumentNode.SelectNodes(Constant.XPATH_SUB_COLLECTION_URLS);
 
         if (subCollections != null)
@@ -15,12 +14,12 @@ public static class Scraper
             foreach (var subCollection in subCollections)
             {
                 updateInfo.CollectionId = subCollection.Attributes[Constant.HREF].Value.Remove(0, 55);
-                await GetCollection(updateInfo, getUpdateNotes, new HtmlDocument());
+                await GetCollection(updateInfo, includeUpdateNotes, new HtmlDocument());
             }
         }
     }
 
-    private static async Task GetCollection(UpdateInfo updateInfo, bool getUpdateNotes, HtmlDocument document)
+    private static async Task GetCollection(UpdateInfo updateInfo, bool includeUpdateNotes, HtmlDocument document)
     {
         string htmlContent = await Utility.GetHtmlContent(Constant.BASE_URL + updateInfo.CollectionId);
         document.LoadHtml(htmlContent);
@@ -77,7 +76,7 @@ public static class Scraper
                         Utility.ColorfulWrite([LanguageManager.Translate(Constant.KEY_UPDATE_AVAILABLE), LanguageManager.Translate(Constant.KEY_ITEM), $"{title} ({itemSize})", LanguageManager.Translate(Constant.KEY_UPDATE_DATE), $"{updateDate}\n\n"],
                                               [ConsoleColor.White, ConsoleColor.Magenta, ConsoleColor.Yellow, ConsoleColor.Magenta, ConsoleColor.Yellow]);
 
-                        if (getUpdateNotes)
+                        if (includeUpdateNotes)
                         {
                             string itemId = itemDocument.DocumentNode.SelectSingleNode(Constant.XPATH_ITEM_UPDATE_NOTE_URL).Attributes[Constant.HREF].Value.Remove(0, 61);
                             var updateNotes = await GetUpdateNotes(itemId);
