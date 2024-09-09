@@ -20,6 +20,7 @@ public static class LanguageManager
                 { Constant.KEY_ENTER_START_DATE_DAY, Constant.TR_ENTER_START_DATE_DAY },
                 { Constant.KEY_INVALID_DAY, Constant.TR_INVALID_DAY },
                 { Constant.KEY_UPDATE_AVAILABLE_ONLY, Constant.TR_UPDATE_AVAILABLE_ONLY },
+                { Constant.KEY_INCLUDE_UPDATE_NOTES, Constant.TR_INCLUDE_UPDATE_NOTES },
                 { Constant.KEY_PROCESS_STARTING, Constant.TR_PROCESS_STARTING },
                 { Constant.KEY_UPDATE_CHECK, Constant.TR_UPDATE_CHECK },
                 { Constant.KEY_RESTART_MESSAGE, Constant.TR_RESTART_MESSAGE },
@@ -29,7 +30,10 @@ public static class LanguageManager
                 { Constant.KEY_NOT_UPDATED, Constant.TR_NOT_UPDATED },
                 { Constant.KEY_ITEM, Constant.TR_ITEM },
                 { Constant.KEY_UPDATE_DATE, Constant.TR_UPDATE_DATE },
-                { Constant.KEY_NONE, Constant.TR_NONE }
+                { Constant.KEY_NONE, Constant.TR_NONE },
+                { Constant.KEY_DATE, Constant.TR_DATE },
+                { Constant.KEY_DESCRIPTION, Constant.TR_DESCRIPTION },
+                { Constant.KEY_NO_INFO, Constant.TR_NO_INFO }
             };
         }
         else if (language == Constant.EN)
@@ -45,6 +49,7 @@ public static class LanguageManager
                 { Constant.KEY_INVALID_MONTH, Constant.EN_INVALID_MONTH },
                 { Constant.KEY_ENTER_START_DATE_DAY, Constant.EN_ENTER_START_DATE_DAY },
                 { Constant.KEY_UPDATE_AVAILABLE_ONLY, Constant.EN_UPDATE_AVAILABLE_ONLY },
+                { Constant.KEY_INCLUDE_UPDATE_NOTES, Constant.EN_INCLUDE_UPDATE_NOTES },
                 { Constant.KEY_PROCESS_STARTING, Constant.EN_PROCESS_STARTING },
                 { Constant.KEY_INVALID_DAY, Constant.EN_INVALID_DAY },
                 { Constant.KEY_UPDATE_CHECK, Constant.EN_UPDATE_CHECK },
@@ -55,7 +60,10 @@ public static class LanguageManager
                 { Constant.KEY_NOT_UPDATED, Constant.EN_NOT_UPDATED },
                 { Constant.KEY_ITEM, Constant.EN_ITEM },
                 { Constant.KEY_UPDATE_DATE, Constant.EN_UPDATE_DATE },
-                { Constant.KEY_NONE, Constant.EN_NONE }
+                { Constant.KEY_NONE, Constant.EN_NONE },
+                { Constant.KEY_DATE, Constant.EN_DATE },
+                { Constant.KEY_DESCRIPTION, Constant.EN_DESCRIPTION },
+                { Constant.KEY_NO_INFO, Constant.EN_NO_INFO }
             };
         }
     }

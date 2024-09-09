@@ -28,18 +28,19 @@ public static class Utility
         return true;
     }
 
-    public static bool IsOnlyUpdateAvailable(string text)
+    public static bool GetState(string text)
     {
         Console.Write(text);
 
-        bool updateAvailableOnly = Console.ReadKey().KeyChar switch
+        bool state = Console.ReadKey().KeyChar switch
         {
             '1' => true,
             '2' => false,
             _ => false,
         };
 
-        return updateAvailableOnly;
+        Console.Write("\n");
+        return state;
     }
 
     public static async Task<string> GetHtmlContent(string url)

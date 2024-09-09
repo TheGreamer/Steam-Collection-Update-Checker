@@ -11,7 +11,11 @@ public static class Constant
     public const string XPATH_SUB_COLLECTION_URLS = "//div[@class='collections']//div[@class='workshopItem']/a[2]";
     public const string XPATH_ITEM_TITLE = "//div[@class='workshopItemTitle']";
     public const string XPATH_ITEM_UPDATE_DATE = "//div[@class='detailsStatRight']";
+    public const string XPATH_ITEM_UPDATE_NOTE_URL = "//span[@class='change_note_link']/a";
+    public const string XPATH_UPDATE_NOTE_TITLES = "//div[@class='detailBox workshopAnnouncement noFooter changeLogCtn']//div[@class='changelog headline']";
+    public const string XPATH_UPDATE_NOTE_DESCRIPTIONS = "//div[@class='detailBox workshopAnnouncement noFooter changeLogCtn']/p";
     public const string BASE_URL = "https://steamcommunity.com/sharedfiles/filedetails/?id=";
+    public const string UPDATE_NOTES_URL = "https://steamcommunity.com/sharedfiles/filedetails/changelog/";
     public const string SELECT_LANGUAGE = "Select Language / Dil Seç\n1 - English\n2 - Türkçe\n";
 
     public const string EN_DEFAULT_CULTURE_INFO = "en-US";
@@ -33,6 +37,7 @@ public static class Constant
     public const string KEY_ENTER_START_DATE_DAY = "EnterStartDateDay";
     public const string KEY_INVALID_DAY = "InvalidDay";
     public const string KEY_UPDATE_AVAILABLE_ONLY = "UpdateAvailableOnly";
+    public const string KEY_INCLUDE_UPDATE_NOTES = "IncludeUpdateNotes";
     public const string KEY_PROCESS_STARTING = "ProcessStarting";
     public const string KEY_UPDATE_CHECK = "UpdateCheck";
     public const string KEY_RESTART_MESSAGE = "RestartMessage";
@@ -43,6 +48,9 @@ public static class Constant
     public const string KEY_ITEM = "Item";
     public const string KEY_UPDATE_DATE = "UpdateDate";
     public const string KEY_NONE = "None";
+    public const string KEY_DATE = "Date";
+    public const string KEY_DESCRIPTION = "Description";
+    public const string KEY_NO_INFO = "NoInfo";
 
     public const string EN_CONSOLE_TITLE = "Update Checker For Steam Workshop Collections";
     public const string EN_ENTER_COLLECTION_ID = "Steam Workshop Collection ID : ";
@@ -54,6 +62,7 @@ public static class Constant
     public const string EN_ENTER_START_DATE_DAY = "Minimum Update Day (e.g. 15) : ";
     public const string EN_INVALID_DAY = "You must specify a minimum update day. Restarting the process.\n";
     public const string EN_UPDATE_AVAILABLE_ONLY = "Should only objects in the collection that have an existing update be listed from the date you specified until now? (1 - Yes, 2 - No): ";
+    public const string EN_INCLUDE_UPDATE_NOTES = "Should last update notes (max. 10) for updates be displayed? (1 - Yes, 2 - No)";
     public const string EN_PROCESS_STARTING = "\nThe listing process has started. This process may take a while depending on the number of items in the collection. Please wait until it's finished...\n\n";
     public const string EN_UPDATE_CHECK = "Update Check";
     public const string EN_RESTART_MESSAGE = "Press Enter to restart the program, or any other key to exit...";
@@ -64,6 +73,9 @@ public static class Constant
     public const string EN_ITEM = "Item: ";
     public const string EN_UPDATE_DATE = ", Last Update Date: ";
     public const string EN_NONE = "None";
+    public const string EN_DATE = "Date: ";
+    public const string EN_DESCRIPTION = "Description: ";
+    public const string EN_NO_INFO = "There is no description for this update note.";
 
     public const string TR_CONSOLE_TITLE = "Steam Atölye Koleksiyonları İçin Güncelleme Kontrol Edicisi";
     public const string TR_ENTER_COLLECTION_ID = "Steam Atölye Koleksiyonu Numarası : ";
@@ -75,6 +87,7 @@ public static class Constant
     public const string TR_ENTER_START_DATE_DAY = "Minimum Güncellenme Günü (Örnek 15) : ";
     public const string TR_INVALID_DAY = "Minimum bir güncellenme günü belirtmelisiniz. İşlem başa sarılıyor.\n";
     public const string TR_UPDATE_AVAILABLE_ONLY = "Belirlediğiniz tarihten şu ana kadar kontrol edilecek olan koleksiyondaki nesnelerden sadece mevcut güncellemesi olanlar mı listelensin? (1 - Evet, 2 - Hayır): ";
+    public const string TR_INCLUDE_UPDATE_NOTES = "Son yapılan güncellemelere ait (maks. 10) güncelleme notları görüntülensin mi? (1 - Evet, 2 - Hayır): ";
     public const string TR_PROCESS_STARTING = "\nListeleme işlemi başladı. Bu işlem koleksiyondaki öğe sayısına göre uzun sürebilir. Lütfen tamamlanana kadar bekleyiniz...\n\n";
     public const string TR_UPDATE_CHECK = "Güncelleme Kontrolleri";
     public const string TR_RESTART_MESSAGE = "Programı baştan başlatmak için Enter tuşuna, kapatmak için herhangi bir tuşa basınız...";
@@ -85,4 +98,7 @@ public static class Constant
     public const string TR_ITEM = "Öğe: ";
     public const string TR_UPDATE_DATE = ", Son Güncellenme Tarihi: ";
     public const string TR_NONE = "Yok";
+    public const string TR_DATE = "Tarih: ";
+    public const string TR_DESCRIPTION = "Açıklama: ";
+    public const string TR_NO_INFO = "Bu güncelleme notu ile alakalı bir açıklama yok.";
 }

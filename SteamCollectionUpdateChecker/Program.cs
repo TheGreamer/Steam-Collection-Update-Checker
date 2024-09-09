@@ -39,14 +39,16 @@ internal class Program
         if (!dayResult) goto DateDay;
         else startDateDay = dayValue;
 
-        bool updateAvailableOnly = Utility.IsOnlyUpdateAvailable(LanguageManager.Translate(Constant.KEY_UPDATE_AVAILABLE_ONLY));
+        bool updateAvailableOnly = Utility.GetState(LanguageManager.Translate(Constant.KEY_UPDATE_AVAILABLE_ONLY));
+        bool includeUpdateNotes = Utility.GetState(LanguageManager.Translate(Constant.KEY_INCLUDE_UPDATE_NOTES));
+
         Console.Write(LanguageManager.Translate(Constant.KEY_PROCESS_STARTING));
         using (var fileWriter = new StreamWriter(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), $"{collectionId} ({startDateDay}.{startDateMonth}.{startDateYear} - {DateTime.Now:d}) - {LanguageManager.Translate(Constant.KEY_UPDATE_CHECK)}.txt"), false, Encoding.UTF8))
         {
             using var multiWriter = new MultiTextWriter(Console.Out, fileWriter);
             Console.SetOut(multiWriter);
             var updateInfo = new UpdateInfo(collectionId, startDateYear, startDateMonth, startDateDay, language, updateAvailableOnly);
-            await Scraper.ProcessCollection(updateInfo);
+            await Scraper.ProcessCollection(updateInfo, includeUpdateNotes);
         }
 
         var standardOutput = new StreamWriter(Console.OpenStandardOutput(), Encoding.UTF8);
