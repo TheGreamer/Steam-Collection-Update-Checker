@@ -62,7 +62,7 @@ public static class Constant
     public const string EN_ENTER_START_DATE_DAY = "Minimum Update Day (e.g. 15) : ";
     public const string EN_INVALID_DAY = "You must specify a minimum update day. Restarting the process.\n";
     public const string EN_UPDATE_AVAILABLE_ONLY = "Should only objects in the collection that have an existing update be listed from the date you specified until now? (1 - Yes, 2 - No): ";
-    public const string EN_INCLUDE_UPDATE_NOTES = "Should last update notes (max. 10) for updates be displayed? (1 - Yes, 2 - No)";
+    public const string EN_INCLUDE_UPDATE_NOTES = "Should last update notes (max. 10) for updates be displayed? (1 - Yes, 2 - No): ";
     public const string EN_PROCESS_STARTING = "\nThe listing process has started. This process may take a while depending on the number of items in the collection. Please wait until it's finished...\n\n";
     public const string EN_UPDATE_CHECK = "Update Check";
     public const string EN_RESTART_MESSAGE = "Press Enter to restart the program, or any other key to exit...";
