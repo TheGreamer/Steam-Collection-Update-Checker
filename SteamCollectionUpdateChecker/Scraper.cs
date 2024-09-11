@@ -80,7 +80,8 @@ public static class Scraper
                         {
                             string itemId = itemDocument.DocumentNode.SelectSingleNode(Constant.XPATH_ITEM_UPDATE_NOTE_URL).Attributes[Constant.HREF].Value.Remove(0, 61);
                             int noteCount = itemDocument.DocumentNode.SelectSingleNode(Constant.XPATH_UPDATE_NOTE_COUNT).InnerText.GetNumericValue();
-                            var updateNotes = await GetUpdateNotes(itemId, noteCount, new DateTime(updateInfo.StartDateYear, updateInfo.StartDateMonth, updateInfo.StartDateDay));
+                            var startDate = new DateTime(updateInfo.StartDateYear, updateInfo.StartDateMonth, updateInfo.StartDateDay);
+                            var updateNotes = await GetUpdateNotes(itemId, noteCount, startDate);
 
                             if (updateNotes != null)
                             {
