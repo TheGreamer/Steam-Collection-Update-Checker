@@ -3,10 +3,10 @@ namespace SteamCollectionUpdateChecker;
 
 public static class Scraper
 {
-    public static async Task ProcessCollection(UpdateInfo updateInfo, bool includeUpdateNotes)
+    public static async Task ProcessCollection(UpdateInfo updateInfo)
     {
         var document = new HtmlDocument();
-        await GetCollection(updateInfo, includeUpdateNotes, document);
+        await GetCollection(updateInfo, document);
         var subCollections = document.DocumentNode.SelectNodes(Constant.XPATH_SUB_COLLECTION_URLS);
 
         if (subCollections != null)
@@ -14,12 +14,12 @@ public static class Scraper
             foreach (var subCollection in subCollections)
             {
                 updateInfo.CollectionId = subCollection.Attributes[Constant.HREF].Value.Remove(0, 55);
-                await GetCollection(updateInfo, includeUpdateNotes, new HtmlDocument());
+                await GetCollection(updateInfo, new HtmlDocument());
             }
         }
     }
 
-    private static async Task GetCollection(UpdateInfo updateInfo, bool includeUpdateNotes, HtmlDocument document)
+    private static async Task GetCollection(UpdateInfo updateInfo, HtmlDocument document)
     {
         string htmlContent = await Utility.GetHtmlContent(Constant.BASE_URL + updateInfo.CollectionId);
         document.LoadHtml(htmlContent);
@@ -76,7 +76,7 @@ public static class Scraper
                         Utility.ColorfulWrite([LanguageManager.Translate(Constant.KEY_UPDATE_AVAILABLE), LanguageManager.Translate(Constant.KEY_ITEM), $"{title} ({itemSize})", LanguageManager.Translate(Constant.KEY_UPDATE_DATE), $"{updateDate}\n\n"],
                                               [ConsoleColor.White, ConsoleColor.Magenta, ConsoleColor.Yellow, ConsoleColor.Magenta, ConsoleColor.Yellow]);
 
-                        if (includeUpdateNotes)
+                        if (updateInfo.IncludeUpdateNotes)
                         {
                             string itemId = itemDocument.DocumentNode.SelectSingleNode(Constant.XPATH_ITEM_UPDATE_NOTE_URL).Attributes[Constant.HREF].Value.Remove(0, 61);
                             int noteCount = itemDocument.DocumentNode.SelectSingleNode(Constant.XPATH_UPDATE_NOTE_COUNT).InnerText.GetNumericValue();
@@ -110,7 +110,7 @@ public static class Scraper
                                               [ConsoleColor.White, ConsoleColor.Gray, ConsoleColor.Red, ConsoleColor.Gray, ConsoleColor.Red]);
                 }
 
-                Console.ResetColor();
+                Console.ForegroundColor = ConsoleColor.White;
             }
         }
     }

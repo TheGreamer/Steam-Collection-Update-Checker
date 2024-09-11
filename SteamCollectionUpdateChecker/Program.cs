@@ -6,6 +6,7 @@ internal class Program
 {
     private static async Task Main()
     {
+        Console.ForegroundColor = ConsoleColor.White;
         string language = Utility.SelectAppLanguage(Constant.SELECT_LANGUAGE);
         Console.Title = LanguageManager.Translate(Constant.KEY_CONSOLE_TITLE);
         Console.Clear();
@@ -43,12 +44,15 @@ internal class Program
         bool includeUpdateNotes = Utility.GetState(LanguageManager.Translate(Constant.KEY_INCLUDE_UPDATE_NOTES));
 
         Console.Write(LanguageManager.Translate(Constant.KEY_PROCESS_STARTING));
+        Thread.Sleep(TimeSpan.FromSeconds(5));
+
         using (var fileWriter = new StreamWriter(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), $"{collectionId} ({startDateDay}.{startDateMonth}.{startDateYear} - {DateTime.Now:d}) - {LanguageManager.Translate(Constant.KEY_UPDATE_CHECK)}.txt"), false, Encoding.UTF8))
         {
             using var multiWriter = new MultiTextWriter(Console.Out, fileWriter);
             Console.SetOut(multiWriter);
-            var updateInfo = new UpdateInfo(collectionId, startDateYear, startDateMonth, startDateDay, language, updateAvailableOnly);
-            await Scraper.ProcessCollection(updateInfo, includeUpdateNotes);
+            var updateInfo = new UpdateInfo(collectionId, startDateYear, startDateMonth, startDateDay, language, updateAvailableOnly, includeUpdateNotes);
+            Utility.WriteUpdateInfo(updateInfo);
+            await Scraper.ProcessCollection(updateInfo);
         }
 
         var standardOutput = new StreamWriter(Console.OpenStandardOutput(), Encoding.UTF8);

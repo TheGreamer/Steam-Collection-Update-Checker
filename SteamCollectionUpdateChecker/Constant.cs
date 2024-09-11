@@ -52,6 +52,12 @@ public static class Constant
     public const string KEY_DATE = "Date";
     public const string KEY_DESCRIPTION = "Description";
     public const string KEY_NO_INFO = "NoInfo";
+    public const string KEY_UPDATE_INFO_TEXT_1 = "UpdateInfoTitle1";
+    public const string KEY_UPDATE_INFO_TEXT_2 = "UpdateInfoTitle2";
+    public const string KEY_UPDATE_INFO_TEXT_3 = "UpdateInfoTitle3";
+    public const string KEY_UPDATE_INFO_TEXT_4 = "UpdateInfoTitle4";
+    public const string KEY_UPDATE_INFO_TEXT_5 = "UpdateInfoTitle5";
+    public const string KEY_UPDATE_INFO_TEXT_6 = "UpdateInfoTitle6";
 
     public const string EN_CONSOLE_TITLE = "Update Checker For Steam Workshop Collections";
     public const string EN_ENTER_COLLECTION_ID = "Steam Workshop Collection ID : ";
@@ -77,6 +83,12 @@ public static class Constant
     public const string EN_DATE = "Date: ";
     public const string EN_DESCRIPTION = "Description: ";
     public const string EN_NO_INFO = "There is no description for this update note.";
+    public const string EN_UPDATE_INFO_TEXT_1 = "Collection number: ";
+    public const string EN_UPDATE_INFO_TEXT_2 = "\nUpdate check start date: ";
+    public const string EN_UPDATE_INFO_TEXT_3 = "\nWere only items with an existing update selected?: ";
+    public const string EN_UPDATE_INFO_TEXT_4 = "\nWere update notes included?: ";
+    public const string EN_UPDATE_INFO_TEXT_5 = "Yes";
+    public const string EN_UPDATE_INFO_TEXT_6 = "No";
 
     public const string TR_CONSOLE_TITLE = "Steam Atölye Koleksiyonları İçin Güncelleme Kontrol Edicisi";
     public const string TR_ENTER_COLLECTION_ID = "Steam Atölye Koleksiyonu Numarası : ";
@@ -102,4 +114,10 @@ public static class Constant
     public const string TR_DATE = "Tarih: ";
     public const string TR_DESCRIPTION = "Açıklama: ";
     public const string TR_NO_INFO = "Bu güncelleme notu ile alakalı bir açıklama yok.";
+    public const string TR_UPDATE_INFO_TEXT_1 = "Koleksiyon numarası: ";
+    public const string TR_UPDATE_INFO_TEXT_2 = "\nGüncelleme kontrolü başlangıç tarihi: ";
+    public const string TR_UPDATE_INFO_TEXT_3 = "\nYalnızca mevcut güncellemesi olanlar mı seçildi?: ";
+    public const string TR_UPDATE_INFO_TEXT_4 = "\nGüncelleme notları dahil edildi mi?: ";
+    public const string TR_UPDATE_INFO_TEXT_5 = "Evet";
+    public const string TR_UPDATE_INFO_TEXT_6 = "Hayır";
 }

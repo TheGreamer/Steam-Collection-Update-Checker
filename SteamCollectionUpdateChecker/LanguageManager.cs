@@ -33,7 +33,13 @@ public static class LanguageManager
                 { Constant.KEY_NONE, Constant.TR_NONE },
                 { Constant.KEY_DATE, Constant.TR_DATE },
                 { Constant.KEY_DESCRIPTION, Constant.TR_DESCRIPTION },
-                { Constant.KEY_NO_INFO, Constant.TR_NO_INFO }
+                { Constant.KEY_NO_INFO, Constant.TR_NO_INFO },
+                { Constant.KEY_UPDATE_INFO_TEXT_1, Constant.TR_UPDATE_INFO_TEXT_1 },
+                { Constant.KEY_UPDATE_INFO_TEXT_2, Constant.TR_UPDATE_INFO_TEXT_2 },
+                { Constant.KEY_UPDATE_INFO_TEXT_3, Constant.TR_UPDATE_INFO_TEXT_3 },
+                { Constant.KEY_UPDATE_INFO_TEXT_4, Constant.TR_UPDATE_INFO_TEXT_4 },
+                { Constant.KEY_UPDATE_INFO_TEXT_5, Constant.TR_UPDATE_INFO_TEXT_5 },
+                { Constant.KEY_UPDATE_INFO_TEXT_6, Constant.TR_UPDATE_INFO_TEXT_6 }
             };
         }
         else if (language == Constant.EN)
@@ -63,7 +69,13 @@ public static class LanguageManager
                 { Constant.KEY_NONE, Constant.EN_NONE },
                 { Constant.KEY_DATE, Constant.EN_DATE },
                 { Constant.KEY_DESCRIPTION, Constant.EN_DESCRIPTION },
-                { Constant.KEY_NO_INFO, Constant.EN_NO_INFO }
+                { Constant.KEY_NO_INFO, Constant.EN_NO_INFO },
+                { Constant.KEY_UPDATE_INFO_TEXT_1, Constant.EN_UPDATE_INFO_TEXT_1 },
+                { Constant.KEY_UPDATE_INFO_TEXT_2, Constant.EN_UPDATE_INFO_TEXT_2 },
+                { Constant.KEY_UPDATE_INFO_TEXT_3, Constant.EN_UPDATE_INFO_TEXT_3 },
+                { Constant.KEY_UPDATE_INFO_TEXT_4, Constant.EN_UPDATE_INFO_TEXT_4 },
+                { Constant.KEY_UPDATE_INFO_TEXT_5, Constant.EN_UPDATE_INFO_TEXT_5 },
+                { Constant.KEY_UPDATE_INFO_TEXT_6, Constant.EN_UPDATE_INFO_TEXT_6 }
             };
         }
     }

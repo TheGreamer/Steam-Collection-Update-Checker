@@ -6,10 +6,10 @@ public static class Utility
 {
     public static string SelectAppLanguage(string text)
     {
-        string language = string.Empty;
         Console.Title = string.Empty;
         Console.Write(text);
 
+        string language;
         switch (Console.ReadKey().KeyChar)
         {
             case '1': LanguageManager.SetLanguage(Constant.EN); language = Constant.EN; break;
@@ -108,5 +108,12 @@ public static class Utility
 
             return (true, checkValue);
         }
+    }
+
+    public static void WriteUpdateInfo(UpdateInfo updateInfo)
+    {
+        Console.Clear();
+        ColorfulWrite([$"{LanguageManager.Translate(Constant.KEY_CONSOLE_TITLE).ToUpper()}\n\n", LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_1), updateInfo.CollectionId, LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_2), $"{new DateTime(updateInfo.StartDateYear, updateInfo.StartDateMonth, updateInfo.StartDateDay):d}", LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_3), $"{(updateInfo.UpdateAvailableOnly ? LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_5) : LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_6))}", LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_4), $"{(updateInfo.IncludeUpdateNotes ? LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_5) : LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_6))}", "\n\n-----------------------------------------------------\n\n"],
+                      [ConsoleColor.White, ConsoleColor.Cyan, ConsoleColor.Green, ConsoleColor.Cyan, ConsoleColor.Green, ConsoleColor.Cyan, ConsoleColor.Green, ConsoleColor.Cyan, ConsoleColor.Green, ConsoleColor.White]);
     }
 }
