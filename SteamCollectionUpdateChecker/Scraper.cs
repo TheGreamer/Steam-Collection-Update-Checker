@@ -1,4 +1,5 @@
 ﻿using HtmlAgilityPack;
+using System.Text.RegularExpressions;
 namespace SteamCollectionUpdateChecker;
 
 public static class Scraper
@@ -79,7 +80,8 @@ public static class Scraper
                         if (includeUpdateNotes)
                         {
                             string itemId = itemDocument.DocumentNode.SelectSingleNode(Constant.XPATH_ITEM_UPDATE_NOTE_URL).Attributes[Constant.HREF].Value.Remove(0, 61);
-                            var updateNotes = await GetUpdateNotes(itemId);
+                            int noteCount = itemDocument.DocumentNode.SelectSingleNode(Constant.XPATH_UPDATE_NOTE_COUNT).InnerText.GetNumericValue();
+                            var updateNotes = await GetUpdateNotes(itemId, noteCount);
 
                             if (updateNotes != null)
                             {
@@ -113,33 +115,47 @@ public static class Scraper
         }
     }
 
-    private static async Task<Dictionary<string, string>?> GetUpdateNotes(string itemId)
+    private static async Task<Dictionary<string, string>?> GetUpdateNotes(string itemId, int noteCount)
     {
-        Restart:
-        string htmlContent = string.Empty;
-        try
+        var allUpdateNotes = new Dictionary<string, string>();
+
+        int pageCount = noteCount switch
         {
-            htmlContent = await Utility.GetHtmlContent(Constant.UPDATE_NOTES_URL + itemId);
-        }
-        catch (HttpRequestException)
+            >= 10 => noteCount % 10 == 0 ? noteCount / 10 : (noteCount / 10) + 1,
+            _ => 1
+        };
+
+        for (int i = 1; i <= pageCount; i++)
         {
-            Thread.Sleep(TimeSpan.FromSeconds(120));
-            goto Restart;
+            Restart:
+            string htmlContent = string.Empty;
+            try
+            {
+                htmlContent = await Utility.GetHtmlContent($"{Constant.UPDATE_NOTES_URL}{itemId}?p={i}");
+            }
+            catch (HttpRequestException)
+            {
+                Thread.Sleep(TimeSpan.FromSeconds(120));
+                goto Restart;
+            }
+
+            var document = new HtmlDocument();
+            document.LoadHtml(htmlContent);
+
+            var updateNoteTitles = document.DocumentNode.SelectNodes(Constant.XPATH_UPDATE_NOTE_TITLES);
+            var updateNoteDescriptions = document.DocumentNode.SelectNodes(Constant.XPATH_UPDATE_NOTE_DESCRIPTIONS);
+
+            var titles = updateNoteTitles.Select(title => title.InnerText.Trim().Remove(0, 8)).ToList();
+            var descriptions = updateNoteDescriptions.Select(description => description.InnerText.Trim()).ToList();
+            var updateNotes = titles.Zip(descriptions, (title, description) => (title, description));
+
+            foreach (var (title, description) in updateNotes)
+            {
+                try { allUpdateNotes.Add(title, description); }
+                catch (Exception) { continue; }
+            }
         }
- 
-        var document = new HtmlDocument();
-        document.LoadHtml(htmlContent);
 
-        var updateNoteTitles = document.DocumentNode.SelectNodes(Constant.XPATH_UPDATE_NOTE_TITLES);
-        var updateNoteDescriptions = document.DocumentNode.SelectNodes(Constant.XPATH_UPDATE_NOTE_DESCRIPTIONS);
-
-        if (updateNoteTitles.Equals(1))
-            return null;
-
-        var titles = updateNoteTitles.Select(title => title.InnerText.Trim().Remove(0, 8));
-        var descriptions = updateNoteDescriptions.Select(description => description.InnerText.Trim());
-        var updateNotes = titles.Zip(descriptions, (title, description) => new { title, description }).ToDictionary(pair => pair.title, pair => pair.description);
-
-        return updateNotes;
+        return allUpdateNotes;
     }
 }

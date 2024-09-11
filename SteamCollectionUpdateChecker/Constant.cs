@@ -12,6 +12,7 @@ public static class Constant
     public const string XPATH_ITEM_TITLE = "//div[@class='workshopItemTitle']";
     public const string XPATH_ITEM_UPDATE_DATE = "//div[@class='detailsStatRight']";
     public const string XPATH_ITEM_UPDATE_NOTE_URL = "//span[@class='change_note_link']/a";
+    public const string XPATH_UPDATE_NOTE_COUNT = "//div[@class='detailsStatNumChangeNotes']";
     public const string XPATH_UPDATE_NOTE_TITLES = "//div[@class='detailBox workshopAnnouncement noFooter changeLogCtn']//div[@class='changelog headline']";
     public const string XPATH_UPDATE_NOTE_DESCRIPTIONS = "//div[@class='detailBox workshopAnnouncement noFooter changeLogCtn']/p";
     public const string BASE_URL = "https://steamcommunity.com/sharedfiles/filedetails/?id=";
@@ -62,7 +63,7 @@ public static class Constant
     public const string EN_ENTER_START_DATE_DAY = "Minimum Update Day (e.g. 15) : ";
     public const string EN_INVALID_DAY = "You must specify a minimum update day. Restarting the process.\n";
     public const string EN_UPDATE_AVAILABLE_ONLY = "Should only objects in the collection that have an existing update be listed from the date you specified until now? (1 - Yes, 2 - No): ";
-    public const string EN_INCLUDE_UPDATE_NOTES = "Should last update notes (max. 10) for updates be displayed? (1 - Yes, 2 - No): ";
+    public const string EN_INCLUDE_UPDATE_NOTES = "Should all update notes for updates be displayed? (1 - Yes, 2 - No): ";
     public const string EN_PROCESS_STARTING = "\nThe listing process has started. This process may take a while depending on the number of items in the collection. Please wait until it's finished...\n\n";
     public const string EN_UPDATE_CHECK = "Update Check";
     public const string EN_RESTART_MESSAGE = "Press Enter to restart the program, or any other key to exit...";
@@ -87,7 +88,7 @@ public static class Constant
     public const string TR_ENTER_START_DATE_DAY = "Minimum Güncellenme Günü (Örnek 15) : ";
     public const string TR_INVALID_DAY = "Minimum bir güncellenme günü belirtmelisiniz. İşlem başa sarılıyor.\n";
     public const string TR_UPDATE_AVAILABLE_ONLY = "Belirlediğiniz tarihten şu ana kadar kontrol edilecek olan koleksiyondaki nesnelerden sadece mevcut güncellemesi olanlar mı listelensin? (1 - Evet, 2 - Hayır): ";
-    public const string TR_INCLUDE_UPDATE_NOTES = "Son yapılan güncellemelere ait (maks. 10) güncelleme notları görüntülensin mi? (1 - Evet, 2 - Hayır): ";
+    public const string TR_INCLUDE_UPDATE_NOTES = "Yapılan tüm güncellemelere ait güncelleme notları görüntülensin mi? (1 - Evet, 2 - Hayır): ";
     public const string TR_PROCESS_STARTING = "\nListeleme işlemi başladı. Bu işlem koleksiyondaki öğe sayısına göre uzun sürebilir. Lütfen tamamlanana kadar bekleyiniz...\n\n";
     public const string TR_UPDATE_CHECK = "Güncelleme Kontrolleri";
     public const string TR_RESTART_MESSAGE = "Programı baştan başlatmak için Enter tuşuna, kapatmak için herhangi bir tuşa basınız...";

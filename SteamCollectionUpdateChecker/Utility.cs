@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Text.RegularExpressions;
 namespace SteamCollectionUpdateChecker;
 
 public static class Utility
@@ -41,6 +42,11 @@ public static class Utility
 
         Console.Write("\n");
         return state;
+    }
+
+    public static int GetNumericValue(this string text)
+    {
+        return int.TryParse(Regex.Replace(text, @"\D", ""), out int result) ? result : 0;
     }
 
     public static async Task<string> GetHtmlContent(string url)
