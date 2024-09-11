@@ -80,7 +80,7 @@ public static class Scraper
                         {
                             string itemId = itemDocument.DocumentNode.SelectSingleNode(Constant.XPATH_ITEM_UPDATE_NOTE_URL).Attributes[Constant.HREF].Value.Remove(0, 61);
                             int noteCount = itemDocument.DocumentNode.SelectSingleNode(Constant.XPATH_UPDATE_NOTE_COUNT).InnerText.GetNumericValue();
-                            var updateNotes = await GetUpdateNotes(itemId, noteCount);
+                            var updateNotes = await GetUpdateNotes(itemId, noteCount, new DateTime(updateInfo.StartDateYear, updateInfo.StartDateMonth, updateInfo.StartDateDay));
 
                             if (updateNotes != null)
                             {
@@ -114,7 +114,7 @@ public static class Scraper
         }
     }
 
-    private static async Task<Dictionary<string, string>?> GetUpdateNotes(string itemId, int noteCount)
+    private static async Task<Dictionary<string, string>?> GetUpdateNotes(string itemId, int noteCount, DateTime startDate)
     {
         var allUpdateNotes = new Dictionary<string, string>();
 
@@ -147,12 +147,24 @@ public static class Scraper
             var titles = updateNoteTitles.Select(title => title.InnerText.Trim().Remove(0, 8)).ToList();
             var descriptions = updateNoteDescriptions.Select(description => description.InnerText.Trim()).ToList();
             var updateNotes = titles.Zip(descriptions, (title, description) => (title, description));
+            bool state = false;
 
             foreach (var (title, description) in updateNotes)
             {
-                try { allUpdateNotes.Add(title, description); }
-                catch (Exception) { continue; }
+                if (title.IsDateBetween(startDate, DateTime.Now))
+                {
+                    try { allUpdateNotes.Add(title, description); }
+                    catch (Exception) { continue; }
+                }
+                else
+                {
+                    state = true;
+                    break;
+                }
             }
+
+            if (state)
+                break;
         }
 
         return allUpdateNotes;
