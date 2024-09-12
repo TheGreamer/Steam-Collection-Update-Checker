@@ -20,6 +20,9 @@ public static class Utility
             default: LanguageManager.SetLanguage(Constant.EN); language = Constant.EN; break;
         }
 
+        Console.Title = LanguageManager.Translate(Constant.KEY_CONSOLE_TITLE);
+        Console.Clear();
+
         return language;
     }
 

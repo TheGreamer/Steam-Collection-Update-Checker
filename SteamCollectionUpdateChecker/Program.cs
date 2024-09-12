@@ -7,8 +7,6 @@ internal class Program
     private static async Task Main()
     {
         string language = Utility.SelectAppLanguage(Constant.SELECT_LANGUAGE);
-        Console.Title = LanguageManager.Translate(Constant.KEY_CONSOLE_TITLE);
-        Console.Clear();
 
         while (true)
         {
