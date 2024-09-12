@@ -36,7 +36,7 @@ public static class Utility
             if (!string.IsNullOrWhiteSpace(collectionId) && collectionId.All(char.IsDigit) && collectionId.Length >= 9 && collectionId.Length <= 10)
                 return collectionId;
 
-            Console.WriteLine(failedText);
+            Console.Write(failedText);
         }
     }
 
