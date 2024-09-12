@@ -78,10 +78,10 @@ public static class Utility
         return state;
     }
 
-    public static void PauseApp(string text, int seconds)
+    public static async Task PauseApp(string text, int seconds)
     {
         Console.Write(text);
-        Thread.Sleep(TimeSpan.FromSeconds(seconds));
+        await Task.Delay(TimeSpan.FromSeconds(seconds));
     }
 
     public static void WriteUpdateInfo(UpdateInfo updateInfo)
@@ -98,9 +98,24 @@ public static class Utility
 
     public static async Task<string> GetHtmlContent(string url)
     {
-        using HttpResponseMessage response = await new HttpClient().GetAsync(url);
-        response.EnsureSuccessStatusCode();
-        return await response.Content.ReadAsStringAsync();
+        string htmlContent;
+
+        while (true)
+        {
+            try
+            {
+                using HttpResponseMessage response = await new HttpClient().GetAsync(url);
+                response.EnsureSuccessStatusCode();
+                htmlContent = await response.Content.ReadAsStringAsync();
+                break;
+            }
+            catch (HttpRequestException)
+            {
+                await Task.Delay(TimeSpan.FromSeconds(120));
+            }
+        }
+
+        return htmlContent;
     }
 
     public static void ColorfulWrite(string[] texts, ConsoleColor[] colors)

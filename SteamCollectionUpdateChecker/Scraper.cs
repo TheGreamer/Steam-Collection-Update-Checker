@@ -34,24 +34,14 @@ public static class Scraper
                 if (itemUrl.Contains(Constant.HASH) || !itemUrl.Contains(Constant.URL_FILE_DETAILS))
                     continue;
 
-                Restart:
-                string itemHtmlContent = string.Empty;
-                try
-                {
-                    itemHtmlContent = await Utility.GetHtmlContent(itemUrl);
-                }
-                catch (HttpRequestException)
-                {
-                    Thread.Sleep(TimeSpan.FromSeconds(120));
-                    goto Restart;
-                }
-
+                string itemHtmlContent = await Utility.GetHtmlContent(itemUrl);
                 var itemDocument = new HtmlDocument();
                 itemDocument.LoadHtml(itemHtmlContent);
+
                 var titleNode = itemDocument.DocumentNode.SelectSingleNode(Constant.XPATH_ITEM_TITLE);
                 string title = titleNode?.InnerText.Trim() ?? LanguageManager.Translate(Constant.KEY_TITLE_NOT_FOUND);
-
                 var itemDetails = itemDocument.DocumentNode.SelectNodes(Constant.XPATH_ITEM_UPDATE_DATE);
+
                 string itemSize = string.Empty;
                 string updateDate = null;
                 bool isRecentUpdate = false;
@@ -127,18 +117,7 @@ public static class Scraper
 
         for (int i = 1; i <= pageCount; i++)
         {
-            Restart:
-            string htmlContent = string.Empty;
-            try
-            {
-                htmlContent = await Utility.GetHtmlContent($"{Constant.UPDATE_NOTES_URL}{itemId}?p={i}");
-            }
-            catch (HttpRequestException)
-            {
-                Thread.Sleep(TimeSpan.FromSeconds(120));
-                goto Restart;
-            }
-
+            string htmlContent = await Utility.GetHtmlContent($"{Constant.UPDATE_NOTES_URL}{itemId}?p={i}");
             var document = new HtmlDocument();
             document.LoadHtml(htmlContent);
 
