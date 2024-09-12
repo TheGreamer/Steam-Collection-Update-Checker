@@ -16,14 +16,14 @@ internal class Program
             int startDateDay = Utility.ValidateDate(LanguageManager.Translate(Constant.KEY_ENTER_START_DATE_DAY), LanguageManager.Translate(Constant.KEY_INVALID_DAY), Constant.MIN_DAY, Constant.MAX_DAY);
             bool updateAvailableOnly = Utility.GetState(LanguageManager.Translate(Constant.KEY_UPDATE_AVAILABLE_ONLY));
             bool includeUpdateNotes = Utility.GetState(LanguageManager.Translate(Constant.KEY_INCLUDE_UPDATE_NOTES));
+            var updateInfo = new UpdateInfo(collectionId, startDateYear, startDateMonth, startDateDay, language, updateAvailableOnly, includeUpdateNotes);
 
             await Utility.PauseApp(LanguageManager.Translate(Constant.KEY_PROCESS_STARTING), 5);
 
-            using (var fileWriter = new StreamWriter(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), $"{collectionId} ({startDateDay}.{startDateMonth}.{startDateYear} - {DateTime.Now:d}) - {LanguageManager.Translate(Constant.KEY_UPDATE_CHECK)}.txt"), false, Encoding.UTF8))
+            using (var fileWriter = new StreamWriter(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), $"{updateInfo.CollectionId} ({new DateTime(updateInfo.StartDateYear, updateInfo.StartDateMonth, updateInfo.StartDateDay):d} - {DateTime.Now:d}) - {LanguageManager.Translate(Constant.KEY_UPDATE_CHECK)}.txt"), false, Encoding.UTF8))
             {
                 using var multiWriter = new MultiTextWriter(Console.Out, fileWriter);
                 Console.SetOut(multiWriter);
-                var updateInfo = new UpdateInfo(collectionId, startDateYear, startDateMonth, startDateDay, language, updateAvailableOnly, includeUpdateNotes);
                 Utility.WriteUpdateInfo(updateInfo);
                 await Scraper.ProcessCollection(updateInfo);
             }
