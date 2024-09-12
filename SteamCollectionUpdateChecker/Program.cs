@@ -13,7 +13,7 @@ internal class Program
         while (true)
         {
             string collectionId = Utility.ValidateCollectionId(LanguageManager.Translate(Constant.KEY_ENTER_COLLECTION_ID), LanguageManager.Translate(Constant.KEY_INVALID_COLLECTION_ID));
-            int startDateYear = Utility.ValidateDate(LanguageManager.Translate(Constant.KEY_ENTER_START_DATE_YEAR), LanguageManager.Translate(Constant.KEY_INVALID_YEAR), Constant.MIN_YEAR, DateTime.Now.Year);
+            int startDateYear = Utility.ValidateDate(LanguageManager.Translate(Constant.KEY_ENTER_START_DATE_YEAR), LanguageManager.Translate(Constant.KEY_INVALID_YEAR), Constant.MIN_YEAR, Constant.MAX_YEAR);
             int startDateMonth = Utility.ValidateDate(LanguageManager.Translate(Constant.KEY_ENTER_START_DATE_MONTH), LanguageManager.Translate(Constant.KEY_INVALID_MONTH), Constant.MIN_MONTH, Constant.MAX_MONTH);
             int startDateDay = Utility.ValidateDate(LanguageManager.Translate(Constant.KEY_ENTER_START_DATE_DAY), LanguageManager.Translate(Constant.KEY_INVALID_DAY), Constant.MIN_DAY, Constant.MAX_DAY);
             bool updateAvailableOnly = Utility.GetState(LanguageManager.Translate(Constant.KEY_UPDATE_AVAILABLE_ONLY));

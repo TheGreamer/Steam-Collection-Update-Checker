@@ -2,11 +2,12 @@
 
 public static class Constant
 {
-    public const int MIN_YEAR = 2012;
-    public const int MIN_MONTH = 1;
-    public const int MIN_DAY = 1;
-    public const int MAX_MONTH = 12;
-    public const int MAX_DAY = 30;
+    public static int MAX_YEAR = DateTime.Now.Year;
+    public static int MAX_MONTH = 12;
+    public static int MAX_DAY = 30;
+    public static int MIN_YEAR = 2012;
+    public static int MIN_MONTH = 1;
+    public static int MIN_DAY = 1;
 
     public const char HASH = '#';
     public const string EN = "en";

@@ -115,7 +115,7 @@ public static class Scraper
         }
     }
 
-    private static async Task<Dictionary<string, string>?> GetUpdateNotes(string itemId, int noteCount, DateTime startDate)
+    private static async Task<Dictionary<string, string>> GetUpdateNotes(string itemId, int noteCount, DateTime startDate)
     {
         var allUpdateNotes = new Dictionary<string, string>();
 
