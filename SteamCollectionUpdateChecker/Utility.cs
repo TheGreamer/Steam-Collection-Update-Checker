@@ -23,7 +23,7 @@ public static class Utility
         return language;
     }
 
-    public static string WriteTextAndCheckCollectionIdValidity(string text, string failedText)
+    public static string ValidateCollectionId(string text, string failedText)
     {
         string collectionId;
 
@@ -40,7 +40,7 @@ public static class Utility
         }
     }
 
-    public static int WriteTextAndCheckDateValueValidity(string text, string failedText, int minValue, int maxValue)
+    public static int ValidateDate(string text, string failedText, int minValue, int maxValue)
     {
         int checkValue = 0;
         bool validInput = false;

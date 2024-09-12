@@ -12,10 +12,10 @@ internal class Program
 
         while (true)
         {
-            string collectionId = Utility.WriteTextAndCheckCollectionIdValidity(LanguageManager.Translate(Constant.KEY_ENTER_COLLECTION_ID), LanguageManager.Translate(Constant.KEY_INVALID_COLLECTION_ID));
-            int startDateYear = Utility.WriteTextAndCheckDateValueValidity(LanguageManager.Translate(Constant.KEY_ENTER_START_DATE_YEAR), LanguageManager.Translate(Constant.KEY_INVALID_YEAR), 2012, DateTime.Now.Year);
-            int startDateMonth = Utility.WriteTextAndCheckDateValueValidity(LanguageManager.Translate(Constant.KEY_ENTER_START_DATE_MONTH), LanguageManager.Translate(Constant.KEY_INVALID_MONTH), 1, 12);
-            int startDateDay = Utility.WriteTextAndCheckDateValueValidity(LanguageManager.Translate(Constant.KEY_ENTER_START_DATE_DAY), LanguageManager.Translate(Constant.KEY_INVALID_DAY), 1, 30);
+            string collectionId = Utility.ValidateCollectionId(LanguageManager.Translate(Constant.KEY_ENTER_COLLECTION_ID), LanguageManager.Translate(Constant.KEY_INVALID_COLLECTION_ID));
+            int startDateYear = Utility.ValidateDate(LanguageManager.Translate(Constant.KEY_ENTER_START_DATE_YEAR), LanguageManager.Translate(Constant.KEY_INVALID_YEAR), 2012, DateTime.Now.Year);
+            int startDateMonth = Utility.ValidateDate(LanguageManager.Translate(Constant.KEY_ENTER_START_DATE_MONTH), LanguageManager.Translate(Constant.KEY_INVALID_MONTH), 1, 12);
+            int startDateDay = Utility.ValidateDate(LanguageManager.Translate(Constant.KEY_ENTER_START_DATE_DAY), LanguageManager.Translate(Constant.KEY_INVALID_DAY), 1, 30);
             bool updateAvailableOnly = Utility.GetState(LanguageManager.Translate(Constant.KEY_UPDATE_AVAILABLE_ONLY));
             bool includeUpdateNotes = Utility.GetState(LanguageManager.Translate(Constant.KEY_INCLUDE_UPDATE_NOTES));
 
