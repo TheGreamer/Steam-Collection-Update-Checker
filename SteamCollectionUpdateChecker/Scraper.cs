@@ -63,8 +63,14 @@ public static class Scraper
                 {
                     if (isRecentUpdate)
                     {
-                        Utility.ColorfulWrite([LanguageManager.Translate(Constant.KEY_UPDATE_AVAILABLE), LanguageManager.Translate(Constant.KEY_ITEM), $"{title} ({itemSize})", LanguageManager.Translate(Constant.KEY_UPDATE_DATE), $"{updateDate}\n\n"],
-                                              [ConsoleColor.White, ConsoleColor.Magenta, ConsoleColor.Yellow, ConsoleColor.Magenta, ConsoleColor.Yellow]);
+                        Utility.ColorfulWrite(
+                        [
+                            new(ConsoleColor.White, LanguageManager.Translate(Constant.KEY_UPDATE_AVAILABLE)),
+                            new(ConsoleColor.Magenta, LanguageManager.Translate(Constant.KEY_ITEM)),
+                            new(ConsoleColor.Yellow, $"{title} ({itemSize})"),
+                            new(ConsoleColor.Magenta, LanguageManager.Translate(Constant.KEY_UPDATE_DATE)),
+                            new(ConsoleColor.Yellow, $"{updateDate}\n\n")
+                        ]);
 
                         if (updateInfo.IncludeUpdateNotes)
                         {
@@ -80,8 +86,14 @@ public static class Scraper
 
                                 for (int i = 0; i < updateNotes.Count; i++)
                                 {
-                                    Utility.ColorfulWrite([(i + 1).ToString() + ") ", LanguageManager.Translate(Constant.KEY_DATE), $"{updateTitles[i].ChangeDateFormat(updateInfo.Language)}\n", $"   {LanguageManager.Translate(Constant.KEY_DESCRIPTION)}", $"{(string.IsNullOrWhiteSpace(updateDescriptions[i]) ? LanguageManager.Translate(Constant.KEY_NO_INFO) : updateDescriptions[i])}\n\n"],
-                                                          [ConsoleColor.White, ConsoleColor.Magenta, ConsoleColor.Yellow, ConsoleColor.Magenta, ConsoleColor.Yellow]);
+                                    Utility.ColorfulWrite(
+                                    [
+                                        new(ConsoleColor.White, (i + 1).ToString() + ") "),
+                                        new(ConsoleColor.Magenta, LanguageManager.Translate(Constant.KEY_DATE)),
+                                        new(ConsoleColor.Yellow, $"{updateTitles[i].ChangeDateFormat(updateInfo.Language)}\n"),
+                                        new(ConsoleColor.Magenta, $"   {LanguageManager.Translate(Constant.KEY_DESCRIPTION)}"),
+                                        new(ConsoleColor.Yellow, $"{(string.IsNullOrWhiteSpace(updateDescriptions[i]) ? LanguageManager.Translate(Constant.KEY_NO_INFO) : updateDescriptions[i])}\n\n")
+                                    ]);
                                 }
                             }
                         }
@@ -89,15 +101,31 @@ public static class Scraper
                     else
                     {
                         if (!updateInfo.UpdateAvailableOnly)
-                            Utility.ColorfulWrite([LanguageManager.Translate(Constant.KEY_UPDATED), LanguageManager.Translate(Constant.KEY_ITEM), $"{title} ({itemSize})", LanguageManager.Translate(Constant.KEY_UPDATE_DATE), $"{updateDate}\n\n"],
-                                                  [ConsoleColor.White, ConsoleColor.Cyan, ConsoleColor.Green, ConsoleColor.Cyan, ConsoleColor.Green]);
+                        {
+                            Utility.ColorfulWrite(
+                            [
+                                new(ConsoleColor.White, LanguageManager.Translate(Constant.KEY_UPDATED)),
+                                new(ConsoleColor.Cyan, LanguageManager.Translate(Constant.KEY_ITEM)),
+                                new(ConsoleColor.Green, $"{title} ({itemSize})"),
+                                new(ConsoleColor.Cyan, LanguageManager.Translate(Constant.KEY_UPDATE_DATE)),
+                                new(ConsoleColor.Green, $"{updateDate}\n\n")
+                            ]);
+                        }
                     }
                 }
                 else
                 {
                     if (!updateInfo.UpdateAvailableOnly)
-                        Utility.ColorfulWrite([LanguageManager.Translate(Constant.KEY_NOT_UPDATED), LanguageManager.Translate(Constant.KEY_ITEM), $"{title} ({itemSize})", LanguageManager.Translate(Constant.KEY_UPDATE_DATE), $"{LanguageManager.Translate(Constant.KEY_NONE)}\n\n"],
-                                              [ConsoleColor.White, ConsoleColor.Gray, ConsoleColor.Red, ConsoleColor.Gray, ConsoleColor.Red]);
+                    {
+                        Utility.ColorfulWrite(
+                        [
+                            new(ConsoleColor.White, LanguageManager.Translate(Constant.KEY_NOT_UPDATED)),
+                            new(ConsoleColor.Gray, LanguageManager.Translate(Constant.KEY_ITEM)),
+                            new(ConsoleColor.Red, $"{title} ({itemSize})"),
+                            new(ConsoleColor.Gray, LanguageManager.Translate(Constant.KEY_UPDATE_DATE)),
+                            new(ConsoleColor.Red, $"{LanguageManager.Translate(Constant.KEY_NONE)}\n\n")
+                        ]);
+                    }
                 }
 
                 Console.ForegroundColor = ConsoleColor.White;

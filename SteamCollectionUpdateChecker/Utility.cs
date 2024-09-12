@@ -87,8 +87,20 @@ public static class Utility
     public static void WriteUpdateInfo(UpdateInfo updateInfo)
     {
         Console.Clear();
-        ColorfulWrite([$"{LanguageManager.Translate(Constant.KEY_CONSOLE_TITLE).ToUpper()}\n\n", LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_1), updateInfo.CollectionId, LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_2), $"{new DateTime(updateInfo.StartDateYear, updateInfo.StartDateMonth, updateInfo.StartDateDay):d}", LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_3), $"{(updateInfo.UpdateAvailableOnly ? LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_5) : LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_6))}", LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_4), $"{(updateInfo.IncludeUpdateNotes ? LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_5) : LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_6))}", "\n\n-----------------------------------------------------\n\n"],
-                      [ConsoleColor.White, ConsoleColor.Cyan, ConsoleColor.Green, ConsoleColor.Cyan, ConsoleColor.Green, ConsoleColor.Cyan, ConsoleColor.Green, ConsoleColor.Cyan, ConsoleColor.Green, ConsoleColor.White]);
+
+        ColorfulWrite(
+        [
+            new(ConsoleColor.White, $"{LanguageManager.Translate(Constant.KEY_CONSOLE_TITLE).ToUpper()}\n\n"),
+            new(ConsoleColor.Cyan, LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_1)),
+            new(ConsoleColor.Green, updateInfo.CollectionId),
+            new(ConsoleColor.Cyan, LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_2)),
+            new(ConsoleColor.Green, $"{new DateTime(updateInfo.StartDateYear, updateInfo.StartDateMonth, updateInfo.StartDateDay):d}"),
+            new(ConsoleColor.Cyan, LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_3)),
+            new(ConsoleColor.Green, $"{(updateInfo.UpdateAvailableOnly ? LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_5) : LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_6))}"),
+            new(ConsoleColor.Cyan, LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_4)),
+            new(ConsoleColor.Green, $"{(updateInfo.IncludeUpdateNotes ? LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_5) : LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_6))}"),
+            new(ConsoleColor.White, "\n\n-----------------------------------------------------\n\n")
+        ]);
     }
 
     public static int GetNumericValue(this string text)
@@ -118,12 +130,12 @@ public static class Utility
         return htmlContent;
     }
 
-    public static void ColorfulWrite(string[] texts, ConsoleColor[] colors)
+    public static void ColorfulWrite(ColorfulText[] texts)
     {
         for (int i = 0; i < texts.Length; i++)
         {
-            Console.ForegroundColor = colors[i];
-            Console.Write(texts[i]);
+            Console.ForegroundColor = texts[i].Color;
+            Console.Write(texts[i].Text);
         }
     }
 
