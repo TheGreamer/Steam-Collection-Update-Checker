@@ -36,6 +36,7 @@ public static class Constant
     public const string DATE_VARIANT_4 = "dd MMM @ h:mmtt";
 
     public const string KEY_CONSOLE_TITLE = "ConsoleTitle";
+    public const string KEY_SELECT_THEME = "SelectTheme";
     public const string KEY_ENTER_COLLECTION_ID = "EnterCollectionId";
     public const string KEY_INVALID_COLLECTION_ID = "InvalidCollectionId";
     public const string KEY_ENTER_START_DATE_YEAR = "EnterStartDateYear";
@@ -67,6 +68,7 @@ public static class Constant
     public const string KEY_UPDATE_INFO_TEXT_6 = "UpdateInfoTitle6";
 
     public const string EN_CONSOLE_TITLE = "Update Checker For Steam Workshop Collections";
+    public const string EN_SELECT_THEME = "Select Background Theme (1 - Black, 2 - White): ";
     public const string EN_ENTER_COLLECTION_ID = "Steam Workshop Collection ID : ";
     public const string EN_INVALID_COLLECTION_ID = "You must specify a steam workshop collection ID. Restarting the process.\n";
     public const string EN_ENTER_START_DATE_YEAR = "Minimum Update Year (e.g. 2023) : ";
@@ -98,6 +100,7 @@ public static class Constant
     public const string EN_UPDATE_INFO_TEXT_6 = "No";
 
     public const string TR_CONSOLE_TITLE = "Steam Atölye Koleksiyonları İçin Güncelleme Kontrol Edicisi";
+    public const string TR_SELECT_THEME = "Uygulama Arkaplan Rengi Reç (1 - Siyah, 2 - Beyaz): ";
     public const string TR_ENTER_COLLECTION_ID = "Steam Atölye Koleksiyonu Numarası : ";
     public const string TR_INVALID_COLLECTION_ID = "Bir steam atölye koleksiyon numarası belirtmelisiniz. İşlem başa sarılıyor.\n";
     public const string TR_ENTER_START_DATE_YEAR = "Minimum Güncellenme Yılı (Örnek 2023) : ";

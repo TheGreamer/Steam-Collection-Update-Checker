@@ -26,6 +26,22 @@ public static class Utility
         return language;
     }
 
+    public static void SelectAppTheme(string text)
+    {
+        Console.Write(text);
+
+        var backgroundColor = Console.ReadKey().KeyChar switch
+        {
+            '1' => ConsoleColor.Black,
+            '2' => ConsoleColor.White,
+            _ => ConsoleColor.Black,
+        };
+
+        Console.BackgroundColor = backgroundColor;
+        Console.ForegroundColor = Console.BackgroundColor == ConsoleColor.White ? ConsoleColor.Black : ConsoleColor.White;
+        Console.Clear();
+    }
+
     public static string ValidateCollectionId(string text, string failedText)
     {
         string collectionId;
@@ -87,20 +103,36 @@ public static class Utility
     public static void WriteUpdateInfo(UpdateInfo updateInfo)
     {
         Console.Clear();
+        var colors = GetThemeColors();
 
         ColorfulWrite(
         [
-            new(ConsoleColor.White, $"{LanguageManager.Translate(Constant.KEY_CONSOLE_TITLE).ToUpper()}\n\n"),
-            new(ConsoleColor.Cyan, LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_1)),
-            new(ConsoleColor.Green, updateInfo.CollectionId),
-            new(ConsoleColor.Cyan, LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_2)),
-            new(ConsoleColor.Green, $"{new DateTime(updateInfo.StartDateYear, updateInfo.StartDateMonth, updateInfo.StartDateDay):d}"),
-            new(ConsoleColor.Cyan, LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_3)),
-            new(ConsoleColor.Green, $"{(updateInfo.UpdateAvailableOnly ? LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_5) : LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_6))}"),
-            new(ConsoleColor.Cyan, LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_4)),
-            new(ConsoleColor.Green, $"{(updateInfo.IncludeUpdateNotes ? LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_5) : LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_6))}"),
-            new(ConsoleColor.White, "\n\n-----------------------------------------------------\n\n")
+            new(colors[0], $"{LanguageManager.Translate(Constant.KEY_CONSOLE_TITLE).ToUpper()}\n\n"),
+            new(colors[3], LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_1)),
+            new(colors[4], updateInfo.CollectionId),
+            new(colors[3], LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_2)),
+            new(colors[4], $"{new DateTime(updateInfo.StartDateYear, updateInfo.StartDateMonth, updateInfo.StartDateDay):d}"),
+            new(colors[3], LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_3)),
+            new(colors[4], $"{(updateInfo.UpdateAvailableOnly ? LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_5) : LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_6))}"),
+            new(colors[3], LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_4)),
+            new(colors[4], $"{(updateInfo.IncludeUpdateNotes ? LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_5) : LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_6))}"),
+            new(colors[0], "\n\n-----------------------------------------------------\n\n")
         ]);
+    }
+
+    public static ConsoleColor[] GetThemeColors()
+    {
+        bool theme = Console.BackgroundColor.Equals(ConsoleColor.Black);
+
+        ConsoleColor whiteBlack = theme ? ConsoleColor.White : ConsoleColor.Black;
+        ConsoleColor magenta = theme ? ConsoleColor.Magenta : ConsoleColor.DarkMagenta;
+        ConsoleColor yellow = theme ? ConsoleColor.Yellow : ConsoleColor.DarkYellow;
+        ConsoleColor cyan = theme ? ConsoleColor.Cyan : ConsoleColor.DarkCyan;
+        ConsoleColor green = theme ? ConsoleColor.Green : ConsoleColor.DarkGreen;
+        ConsoleColor gray = theme ? ConsoleColor.Gray : ConsoleColor.DarkGray;
+        ConsoleColor red = theme ? ConsoleColor.Red : ConsoleColor.DarkRed;
+
+        return [whiteBlack, magenta, yellow, cyan, green, gray, red];
     }
 
     public static int GetNumericValue(this string text)

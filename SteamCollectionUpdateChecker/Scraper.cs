@@ -59,17 +59,19 @@ public static class Scraper
                     }
                 }
 
+                var colors = Utility.GetThemeColors();
+
                 if (updateDate != null)
                 {
                     if (isRecentUpdate)
                     {
                         Utility.ColorfulWrite(
                         [
-                            new(ConsoleColor.White, LanguageManager.Translate(Constant.KEY_UPDATE_AVAILABLE)),
-                            new(ConsoleColor.Magenta, LanguageManager.Translate(Constant.KEY_ITEM)),
-                            new(ConsoleColor.Yellow, $"{title} ({itemSize})"),
-                            new(ConsoleColor.Magenta, LanguageManager.Translate(Constant.KEY_UPDATE_DATE)),
-                            new(ConsoleColor.Yellow, $"{updateDate}\n\n")
+                            new(colors[0], LanguageManager.Translate(Constant.KEY_UPDATE_AVAILABLE)),
+                            new(colors[1], LanguageManager.Translate(Constant.KEY_ITEM)),
+                            new(colors[2], $"{title} ({itemSize})"),
+                            new(colors[1], LanguageManager.Translate(Constant.KEY_UPDATE_DATE)),
+                            new(colors[2], $"{updateDate}\n\n")
                         ]);
 
                         if (updateInfo.IncludeUpdateNotes)
@@ -88,11 +90,11 @@ public static class Scraper
                                 {
                                     Utility.ColorfulWrite(
                                     [
-                                        new(ConsoleColor.White, (i + 1).ToString() + ") "),
-                                        new(ConsoleColor.Magenta, LanguageManager.Translate(Constant.KEY_DATE)),
-                                        new(ConsoleColor.Yellow, $"{updateTitles[i].ChangeDateFormat(updateInfo.Language)}\n"),
-                                        new(ConsoleColor.Magenta, $"   {LanguageManager.Translate(Constant.KEY_DESCRIPTION)}"),
-                                        new(ConsoleColor.Yellow, $"{(string.IsNullOrWhiteSpace(updateDescriptions[i]) ? LanguageManager.Translate(Constant.KEY_NO_INFO) : updateDescriptions[i])}\n\n")
+                                        new(colors[0], (i + 1).ToString() + ") "),
+                                        new(colors[1], LanguageManager.Translate(Constant.KEY_DATE)),
+                                        new(colors[2], $"{updateTitles[i].ChangeDateFormat(updateInfo.Language)}\n"),
+                                        new(colors[1], $"   {LanguageManager.Translate(Constant.KEY_DESCRIPTION)}"),
+                                        new(colors[2], $"{(string.IsNullOrWhiteSpace(updateDescriptions[i]) ? LanguageManager.Translate(Constant.KEY_NO_INFO) : updateDescriptions[i])}\n\n")
                                     ]);
                                 }
                             }
@@ -104,11 +106,11 @@ public static class Scraper
                         {
                             Utility.ColorfulWrite(
                             [
-                                new(ConsoleColor.White, LanguageManager.Translate(Constant.KEY_UPDATED)),
-                                new(ConsoleColor.Cyan, LanguageManager.Translate(Constant.KEY_ITEM)),
-                                new(ConsoleColor.Green, $"{title} ({itemSize})"),
-                                new(ConsoleColor.Cyan, LanguageManager.Translate(Constant.KEY_UPDATE_DATE)),
-                                new(ConsoleColor.Green, $"{updateDate}\n\n")
+                                new(colors[0], LanguageManager.Translate(Constant.KEY_UPDATED)),
+                                new(colors[3], LanguageManager.Translate(Constant.KEY_ITEM)),
+                                new(colors[4], $"{title} ({itemSize})"),
+                                new(colors[3], LanguageManager.Translate(Constant.KEY_UPDATE_DATE)),
+                                new(colors[4], $"{updateDate}\n\n")
                             ]);
                         }
                     }
@@ -119,16 +121,16 @@ public static class Scraper
                     {
                         Utility.ColorfulWrite(
                         [
-                            new(ConsoleColor.White, LanguageManager.Translate(Constant.KEY_NOT_UPDATED)),
-                            new(ConsoleColor.Gray, LanguageManager.Translate(Constant.KEY_ITEM)),
-                            new(ConsoleColor.Red, $"{title} ({itemSize})"),
-                            new(ConsoleColor.Gray, LanguageManager.Translate(Constant.KEY_UPDATE_DATE)),
-                            new(ConsoleColor.Red, $"{LanguageManager.Translate(Constant.KEY_NONE)}\n\n")
+                            new(colors[0], LanguageManager.Translate(Constant.KEY_NOT_UPDATED)),
+                            new(colors[5], LanguageManager.Translate(Constant.KEY_ITEM)),
+                            new(colors[6], $"{title} ({itemSize})"),
+                            new(colors[5], LanguageManager.Translate(Constant.KEY_UPDATE_DATE)),
+                            new(colors[6], $"{LanguageManager.Translate(Constant.KEY_NONE)}\n\n")
                         ]);
                     }
                 }
 
-                Console.ForegroundColor = ConsoleColor.White;
+                Console.ForegroundColor = colors[0];
             }
         }
     }

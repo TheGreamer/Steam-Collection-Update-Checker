@@ -7,6 +7,7 @@ internal class Program
     private static async Task Main()
     {
         string language = Utility.SelectAppLanguage(Constant.SELECT_LANGUAGE);
+        Utility.SelectAppTheme(LanguageManager.Translate(Constant.KEY_SELECT_THEME));
 
         while (true)
         {

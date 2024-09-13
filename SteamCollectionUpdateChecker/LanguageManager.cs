@@ -11,6 +11,7 @@ public static class LanguageManager
             _translations = new Dictionary<string, string>
             {
                 { Constant.KEY_CONSOLE_TITLE, Constant.TR_CONSOLE_TITLE },
+                { Constant.KEY_SELECT_THEME, Constant.TR_SELECT_THEME },
                 { Constant.KEY_ENTER_COLLECTION_ID, Constant.TR_ENTER_COLLECTION_ID },
                 { Constant.KEY_INVALID_COLLECTION_ID, Constant.TR_INVALID_COLLECTION_ID },
                 { Constant.KEY_ENTER_START_DATE_YEAR, Constant.TR_ENTER_START_DATE_YEAR },
@@ -47,6 +48,7 @@ public static class LanguageManager
             _translations = new Dictionary<string, string>
             {
                 { Constant.KEY_CONSOLE_TITLE, Constant.EN_CONSOLE_TITLE },
+                { Constant.KEY_SELECT_THEME, Constant.EN_SELECT_THEME },
                 { Constant.KEY_ENTER_COLLECTION_ID, Constant.EN_ENTER_COLLECTION_ID },
                 { Constant.KEY_INVALID_COLLECTION_ID, Constant.EN_INVALID_COLLECTION_ID },
                 { Constant.KEY_ENTER_START_DATE_YEAR, Constant.EN_ENTER_START_DATE_YEAR },
