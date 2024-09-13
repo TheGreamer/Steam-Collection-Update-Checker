@@ -19,7 +19,7 @@ public static class Scraper
             new(colors[4], $"{(updateInfo.UpdateAvailableOnly ? LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_5) : LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_6))}"),
             new(colors[3], LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_4)),
             new(colors[4], $"{(updateInfo.IncludeUpdateNotes ? LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_5) : LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_6))}"),
-            new(colors[0], "\n\n-----------------------------------------------------\n\n")
+            new(colors[0], $"\n\n{new('-', LanguageManager.Translate(Constant.KEY_CONSOLE_TITLE).Length)}\n\n")
         ]);
 
         var document = new HtmlDocument();
