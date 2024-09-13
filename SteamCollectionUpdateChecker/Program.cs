@@ -25,7 +25,6 @@ internal class Program
             {
                 using var multiWriter = new MultiTextWriter(Console.Out, fileWriter);
                 Console.SetOut(multiWriter);
-                Utility.WriteUpdateInfo(updateInfo);
                 await Scraper.ProcessCollection(updateInfo);
             }
 

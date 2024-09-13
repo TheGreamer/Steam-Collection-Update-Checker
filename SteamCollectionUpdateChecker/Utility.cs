@@ -100,26 +100,6 @@ public static class Utility
         await Task.Delay(TimeSpan.FromSeconds(seconds));
     }
 
-    public static void WriteUpdateInfo(UpdateInfo updateInfo)
-    {
-        Console.Clear();
-        var colors = GetThemeColors();
-
-        ColorfulWrite(
-        [
-            new(colors[0], $"{LanguageManager.Translate(Constant.KEY_CONSOLE_TITLE).ToUpper()}\n\n"),
-            new(colors[3], LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_1)),
-            new(colors[4], updateInfo.CollectionId),
-            new(colors[3], LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_2)),
-            new(colors[4], $"{new DateTime(updateInfo.StartDateYear, updateInfo.StartDateMonth, updateInfo.StartDateDay):d}"),
-            new(colors[3], LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_3)),
-            new(colors[4], $"{(updateInfo.UpdateAvailableOnly ? LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_5) : LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_6))}"),
-            new(colors[3], LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_4)),
-            new(colors[4], $"{(updateInfo.IncludeUpdateNotes ? LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_5) : LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_6))}"),
-            new(colors[0], "\n\n-----------------------------------------------------\n\n")
-        ]);
-    }
-
     public static ConsoleColor[] GetThemeColors()
     {
         bool theme = Console.BackgroundColor.Equals(ConsoleColor.Black);
