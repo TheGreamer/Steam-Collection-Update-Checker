@@ -98,18 +98,15 @@ public static class Scraper
 
                             if (updateNotes != null)
                             {
-                                var updateTitles = updateNotes.Keys.ToList();
-                                var updateDescriptions = updateNotes.Values.ToList();
-
                                 for (int i = 0; i < updateNotes.Count; i++)
                                 {
                                     Utility.ColorfulWrite(
                                     [
                                         new(colors[0], (i + 1).ToString() + ") "),
                                         new(colors[1], LanguageManager.Translate(Constant.KEY_DATE)),
-                                        new(colors[2], $"{updateTitles[i].ChangeDateFormat(updateInfo.Language)}\n"),
+                                        new(colors[2], $"{updateNotes[i].Title.ChangeDateFormat(updateInfo.Language)}\n"),
                                         new(colors[1], $"   {LanguageManager.Translate(Constant.KEY_DESCRIPTION)}"),
-                                        new(colors[2], $"{(string.IsNullOrWhiteSpace(updateDescriptions[i]) ? LanguageManager.Translate(Constant.KEY_NO_INFO) : updateDescriptions[i])}\n\n")
+                                        new(colors[2], $"{(string.IsNullOrWhiteSpace(updateNotes[i].Description) ? LanguageManager.Translate(Constant.KEY_NO_INFO) : updateNotes[i].Description)}\n\n")
                                     ]);
                                 }
                             }
@@ -150,9 +147,9 @@ public static class Scraper
         }
     }
 
-    private static async Task<Dictionary<string, string>> GetUpdateNotes(string itemId, int noteCount, DateTime startDate)
+    private static async Task<List<UpdateNote>> GetUpdateNotes(string itemId, int noteCount, DateTime startDate)
     {
-        var allUpdateNotes = new Dictionary<string, string>();
+        var allUpdateNotes = new List<UpdateNote>();
 
         int pageCount = noteCount switch
         {
@@ -171,15 +168,14 @@ public static class Scraper
 
             var titles = updateNoteTitles.Select(title => title.InnerText.Trim().Remove(0, 8)).ToList();
             var descriptions = updateNoteDescriptions.Select(description => description.InnerText.Trim()).ToList();
-            var updateNotes = titles.Zip(descriptions, (title, description) => (title, description));
+            var updateNotes = titles.Zip(descriptions, (title, description) => new UpdateNote(title, description)).ToList();
             bool state = false;
-
-            foreach (var (title, description) in updateNotes)
+            
+            foreach (var updateNote in updateNotes)
             {
-                if (title.IsDateBetween(startDate, DateTime.Now))
+                if (updateNote.Title.IsDateBetween(startDate, DateTime.Now))
                 {
-                    try { allUpdateNotes.Add(title, description); }
-                    catch (Exception) { continue; }
+                    allUpdateNotes.Add(new(updateNote.Title, updateNote.Description));
                 }
                 else
                 {
