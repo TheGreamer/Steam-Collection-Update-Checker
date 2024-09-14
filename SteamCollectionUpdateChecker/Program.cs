@@ -21,7 +21,7 @@ internal class Program
 
             await Utility.PauseApp(LanguageManager.Translate(Constant.KEY_PROCESS_STARTING), 5);
 
-            using (var fileWriter = new StreamWriter(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), $"{updateInfo.CollectionId} ({new DateTime(updateInfo.StartDateYear, updateInfo.StartDateMonth, updateInfo.StartDateDay):d} - {DateTime.Now:d}) - {LanguageManager.Translate(Constant.KEY_UPDATE_CHECK)}.txt"), false, Encoding.UTF8))
+            using (var fileWriter = new StreamWriter(Utility.SetFilePathAndFileName(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), LanguageManager.Translate(Constant.KEY_UPDATE_CHECK), updateInfo), false, Encoding.UTF8))
             {
                 using var multiWriter = new MultiTextWriter(Console.Out, fileWriter);
                 Console.SetOut(multiWriter);
