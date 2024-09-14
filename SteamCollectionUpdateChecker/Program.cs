@@ -16,8 +16,9 @@ internal class Program
             int startDateMonth = Utility.ValidateDate(LanguageManager.Translate(Constant.KEY_ENTER_START_DATE_MONTH), LanguageManager.Translate(Constant.KEY_INVALID_MONTH), Constant.MIN_MONTH, Constant.MAX_MONTH);
             int startDateDay = Utility.ValidateDate(LanguageManager.Translate(Constant.KEY_ENTER_START_DATE_DAY), LanguageManager.Translate(Constant.KEY_INVALID_DAY), Constant.MIN_DAY, Constant.MAX_DAY);
             bool updateAvailableOnly = Utility.GetState(LanguageManager.Translate(Constant.KEY_UPDATE_AVAILABLE_ONLY));
+            bool isRedirectionEnabled = Utility.GetState(LanguageManager.Translate(Constant.KEY_IS_REDIRECTION_ENABLED));
             bool includeUpdateNotes = Utility.GetState(LanguageManager.Translate(Constant.KEY_INCLUDE_UPDATE_NOTES));
-            var updateInfo = new UpdateInfo(collectionId, startDateYear, startDateMonth, startDateDay, language, updateAvailableOnly, includeUpdateNotes);
+            var updateInfo = new UpdateInfo(collectionId, startDateYear, startDateMonth, startDateDay, language, updateAvailableOnly, isRedirectionEnabled, includeUpdateNotes);
 
             await Utility.PauseApp(LanguageManager.Translate(Constant.KEY_PROCESS_STARTING), 5);
 

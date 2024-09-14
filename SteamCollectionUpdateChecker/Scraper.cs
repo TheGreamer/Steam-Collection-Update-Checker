@@ -16,9 +16,11 @@ public static class Scraper
             new(colors[3], LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_2)),
             new(colors[4], $"{new DateTime(updateInfo.StartDateYear, updateInfo.StartDateMonth, updateInfo.StartDateDay):d}"),
             new(colors[3], LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_3)),
-            new(colors[4], $"{(updateInfo.UpdateAvailableOnly ? LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_5) : LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_6))}"),
+            new(colors[4], $"{(updateInfo.UpdateAvailableOnly ? LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_6) : LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_7))}"),
             new(colors[3], LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_4)),
-            new(colors[4], $"{(updateInfo.IncludeUpdateNotes ? LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_5) : LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_6))}"),
+            new(colors[4], $"{(updateInfo.IsRedirectionEnabled ? LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_6) : LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_7))}"),
+            new(colors[3], LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_5)),
+            new(colors[4], $"{(updateInfo.IncludeUpdateNotes ? LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_6) : LanguageManager.Translate(Constant.KEY_UPDATE_INFO_TEXT_7))}"),
             new(colors[0], $"\n\n{new('-', LanguageManager.Translate(Constant.KEY_CONSOLE_TITLE).Length)}\n\n")
         ]);
 
@@ -88,6 +90,9 @@ public static class Scraper
                             new(colors[1], LanguageManager.Translate(Constant.KEY_UPDATE_DATE)),
                             new(colors[2], $"{updateDate}\n\n")
                         ]);
+
+                        if (updateInfo.IsRedirectionEnabled)
+                            Utility.RedirectTo(itemUrl);
 
                         if (updateInfo.IncludeUpdateNotes)
                         {

@@ -46,6 +46,7 @@ public static class Constant
     public const string KEY_ENTER_START_DATE_DAY = "< EnterStartDateDay >";
     public const string KEY_INVALID_DAY = "< InvalidDay >";
     public const string KEY_UPDATE_AVAILABLE_ONLY = "< UpdateAvailableOnly >";
+    public const string KEY_IS_REDIRECTION_ENABLED = "< IsRedirectionEnabled >";
     public const string KEY_INCLUDE_UPDATE_NOTES = "< IncludeUpdateNotes >";
     public const string KEY_PROCESS_STARTING = "< ProcessStarting >";
     public const string KEY_UPDATE_CHECK = "< UpdateCheck >";
@@ -66,6 +67,7 @@ public static class Constant
     public const string KEY_UPDATE_INFO_TEXT_4 = "< UpdateInfoTitle4 >";
     public const string KEY_UPDATE_INFO_TEXT_5 = "< UpdateInfoTitle5 >";
     public const string KEY_UPDATE_INFO_TEXT_6 = "< UpdateInfoTitle6 >";
+    public const string KEY_UPDATE_INFO_TEXT_7 = "< UpdateInfoTitle7 >";
 
     public const string EN_CONSOLE_TITLE = "Update Checker For Steam Workshop Collections";
     public const string EN_SELECT_THEME = "Select Background Theme (1 - Black, 2 - White): ";
@@ -78,6 +80,7 @@ public static class Constant
     public const string EN_ENTER_START_DATE_DAY = "Minimum Update Day (e.g. 15) : ";
     public const string EN_INVALID_DAY = "You must specify a minimum update day. Restarting the process.\n";
     public const string EN_UPDATE_AVAILABLE_ONLY = "Should only objects in the collection that have an existing update be listed from the date you specified until now? (1 - Yes, 2 - No): ";
+    public const string EN_IS_REDIRECTION_ENABLED = "Should items with available updates be redirected to the website? (1 - Yes, 2 - No): ";
     public const string EN_INCLUDE_UPDATE_NOTES = "Should update notes for updates from the date that you specified until now be displayed? (1 - Yes, 2 - No): ";
     public const string EN_PROCESS_STARTING = "\nThe listing process has started. This process may take a while depending on the number of items in the collection. Please wait until it's finished...\n\n";
     public const string EN_UPDATE_CHECK = "Update Check";
@@ -95,9 +98,10 @@ public static class Constant
     public const string EN_UPDATE_INFO_TEXT_1 = "Collection number: ";
     public const string EN_UPDATE_INFO_TEXT_2 = "\nUpdate check start date: ";
     public const string EN_UPDATE_INFO_TEXT_3 = "\nWere only items with an existing update selected?: ";
-    public const string EN_UPDATE_INFO_TEXT_4 = "\nWere update notes included?: ";
-    public const string EN_UPDATE_INFO_TEXT_5 = "Yes";
-    public const string EN_UPDATE_INFO_TEXT_6 = "No";
+    public const string EN_UPDATE_INFO_TEXT_4 = "\nWas redirection activated for items with an existing update? ";
+    public const string EN_UPDATE_INFO_TEXT_5 = "\nWere update notes included?: ";
+    public const string EN_UPDATE_INFO_TEXT_6 = "Yes";
+    public const string EN_UPDATE_INFO_TEXT_7 = "No";
 
     public const string TR_CONSOLE_TITLE = "Steam Atölye Koleksiyonları İçin Güncelleme Kontrol Edicisi";
     public const string TR_SELECT_THEME = "Uygulama Arkaplan Rengi Reç (1 - Siyah, 2 - Beyaz): ";
@@ -110,6 +114,7 @@ public static class Constant
     public const string TR_ENTER_START_DATE_DAY = "Minimum Güncellenme Günü (Örnek 15) : ";
     public const string TR_INVALID_DAY = "Minimum bir güncellenme günü belirtmelisiniz. İşlem başa sarılıyor.\n";
     public const string TR_UPDATE_AVAILABLE_ONLY = "Belirlediğiniz tarihten şu ana kadar kontrol edilecek olan koleksiyondaki nesnelerden sadece mevcut güncellemesi olanlar mı listelensin? (1 - Evet, 2 - Hayır): ";
+    public const string TR_IS_REDIRECTION_ENABLED = "Mevcut güncellemesi olan öğelerin web sitesine yönlendirilsin mi? (1 - Evet, 2 - Hayır): ";
     public const string TR_INCLUDE_UPDATE_NOTES = "Belirlediğiniz tarihten şu ana kadar yapılmış güncellemelere ait güncelleme notları görüntülensin mi? (1 - Evet, 2 - Hayır): ";
     public const string TR_PROCESS_STARTING = "\nListeleme işlemi başladı. Bu işlem koleksiyondaki öğe sayısına göre uzun sürebilir. Lütfen tamamlanana kadar bekleyiniz...\n\n";
     public const string TR_UPDATE_CHECK = "Güncelleme Kontrolleri";
@@ -127,7 +132,8 @@ public static class Constant
     public const string TR_UPDATE_INFO_TEXT_1 = "Koleksiyon numarası: ";
     public const string TR_UPDATE_INFO_TEXT_2 = "\nGüncelleme kontrolü başlangıç tarihi: ";
     public const string TR_UPDATE_INFO_TEXT_3 = "\nYalnızca mevcut güncellemesi olanlar mı seçildi?: ";
-    public const string TR_UPDATE_INFO_TEXT_4 = "\nGüncelleme notları dahil edildi mi?: ";
-    public const string TR_UPDATE_INFO_TEXT_5 = "Evet";
-    public const string TR_UPDATE_INFO_TEXT_6 = "Hayır";
+    public const string TR_UPDATE_INFO_TEXT_4 = "\nMevcut güncellemesi olanlara yönlendirme aktif edildi mi?: ";
+    public const string TR_UPDATE_INFO_TEXT_5 = "\nGüncelleme notları dahil edildi mi?: ";
+    public const string TR_UPDATE_INFO_TEXT_6 = "Evet";
+    public const string TR_UPDATE_INFO_TEXT_7 = "Hayır";
 }

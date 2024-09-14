@@ -21,6 +21,7 @@ public static class LanguageManager
                 { Constant.KEY_ENTER_START_DATE_DAY, Constant.TR_ENTER_START_DATE_DAY },
                 { Constant.KEY_INVALID_DAY, Constant.TR_INVALID_DAY },
                 { Constant.KEY_UPDATE_AVAILABLE_ONLY, Constant.TR_UPDATE_AVAILABLE_ONLY },
+                { Constant.KEY_IS_REDIRECTION_ENABLED, Constant.TR_IS_REDIRECTION_ENABLED },
                 { Constant.KEY_INCLUDE_UPDATE_NOTES, Constant.TR_INCLUDE_UPDATE_NOTES },
                 { Constant.KEY_PROCESS_STARTING, Constant.TR_PROCESS_STARTING },
                 { Constant.KEY_UPDATE_CHECK, Constant.TR_UPDATE_CHECK },
@@ -40,7 +41,8 @@ public static class LanguageManager
                 { Constant.KEY_UPDATE_INFO_TEXT_3, Constant.TR_UPDATE_INFO_TEXT_3 },
                 { Constant.KEY_UPDATE_INFO_TEXT_4, Constant.TR_UPDATE_INFO_TEXT_4 },
                 { Constant.KEY_UPDATE_INFO_TEXT_5, Constant.TR_UPDATE_INFO_TEXT_5 },
-                { Constant.KEY_UPDATE_INFO_TEXT_6, Constant.TR_UPDATE_INFO_TEXT_6 }
+                { Constant.KEY_UPDATE_INFO_TEXT_6, Constant.TR_UPDATE_INFO_TEXT_6 },
+                { Constant.KEY_UPDATE_INFO_TEXT_7, Constant.TR_UPDATE_INFO_TEXT_7 }
             };
         }
         else if (language == Constant.EN)
@@ -57,6 +59,7 @@ public static class LanguageManager
                 { Constant.KEY_INVALID_MONTH, Constant.EN_INVALID_MONTH },
                 { Constant.KEY_ENTER_START_DATE_DAY, Constant.EN_ENTER_START_DATE_DAY },
                 { Constant.KEY_UPDATE_AVAILABLE_ONLY, Constant.EN_UPDATE_AVAILABLE_ONLY },
+                { Constant.KEY_IS_REDIRECTION_ENABLED, Constant.EN_IS_REDIRECTION_ENABLED },
                 { Constant.KEY_INCLUDE_UPDATE_NOTES, Constant.EN_INCLUDE_UPDATE_NOTES },
                 { Constant.KEY_PROCESS_STARTING, Constant.EN_PROCESS_STARTING },
                 { Constant.KEY_INVALID_DAY, Constant.EN_INVALID_DAY },
@@ -77,7 +80,8 @@ public static class LanguageManager
                 { Constant.KEY_UPDATE_INFO_TEXT_3, Constant.EN_UPDATE_INFO_TEXT_3 },
                 { Constant.KEY_UPDATE_INFO_TEXT_4, Constant.EN_UPDATE_INFO_TEXT_4 },
                 { Constant.KEY_UPDATE_INFO_TEXT_5, Constant.EN_UPDATE_INFO_TEXT_5 },
-                { Constant.KEY_UPDATE_INFO_TEXT_6, Constant.EN_UPDATE_INFO_TEXT_6 }
+                { Constant.KEY_UPDATE_INFO_TEXT_6, Constant.EN_UPDATE_INFO_TEXT_6 },
+                { Constant.KEY_UPDATE_INFO_TEXT_7, Constant.EN_UPDATE_INFO_TEXT_7 }
             };
         }
     }

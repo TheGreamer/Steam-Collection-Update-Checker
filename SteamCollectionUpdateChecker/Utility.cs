@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System.Diagnostics;
+using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
 namespace SteamCollectionUpdateChecker;
@@ -154,6 +155,15 @@ public static class Utility
             Console.ForegroundColor = texts[i].Color;
             Console.Write(texts[i].Text);
         }
+    }
+
+    public static void RedirectTo(string url)
+    {
+        Process.Start(new ProcessStartInfo
+        {
+            FileName = url,
+            UseShellExecute = true
+        });
     }
 
     public static string ChangeDateFormat(this string originalDate, string language)
