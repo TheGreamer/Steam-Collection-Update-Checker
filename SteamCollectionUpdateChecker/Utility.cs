@@ -103,7 +103,7 @@ public static class Utility
 
     public static string SetFilePathAndFileName(string path, string fileName, UpdateInfo updateInfo)
     {
-        return Path.Combine(path, $"{updateInfo.CollectionId} ({new DateTime(updateInfo.StartDateYear, updateInfo.StartDateMonth, updateInfo.StartDateDay):d} - {DateTime.Now:d}) - {fileName}.txt");
+        return Path.Combine(path, $"{updateInfo.CollectionId} - {fileName}.txt");
     }
 
     public static ConsoleColor[] GetThemeColors()
